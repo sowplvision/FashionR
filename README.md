@@ -1,1 +1,2 @@
 # FashionR
+FashionR to aplikacja, która pozwala na wyszukiwanie aktualnych produktów sklepów odzieżowych wraz ze zdjęciami. Użytkownik aplikacji posiada możliwość zapisania interesujących go ofert na swoim koncie, wyświetlenia informacji o produkcie i sklepie z którego pochodzi. Aplikacja dopasuje oferty do preferencji użytkownika podanych przy tworzeniu konta m. in. płeć, rozmiar (preferencje będzie można swobodnie modyfikować w każdej chwili). Dodatkowo aplikacja będzie filtrowała produkty na poszczególne kategorie np. koszule, spodnie, sukienki. 
