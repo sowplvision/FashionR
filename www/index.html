@@ -14,9 +14,15 @@
 		<div data-role="page" id="pageone">
 		  <div data-role="header">
 			<h1>FashionR</h1>
+			<h2><i>Zaloguj się, aby kontynuować</i></h2>
 		  </div>
 		  <div data-role="main" class="ui-content">
-			<p>Hi, I'm your mobile device</p>
+				<input type="email" placeholder="Email" id="email"/>
+				<input type="password" placeholder="Password" id="password"/>
+				<button onclick="register()">Nie posiadasz konta? Zarejestruj się</button>
+				<button onclick="logIn()">Zaloguj</button>
+    		<button onclick="googleLogIn()">Zaloguj za pomocą Google+</button>
+    		<button onclick="facebookLogIn()">Zaloguj za pomocą Facebook</button>
 		  </div>
 		  <div data-role="footer" data-position="fixed">
 			<h1>FashionR</h1>
