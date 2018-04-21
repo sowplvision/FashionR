@@ -4,6 +4,7 @@
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 		<script src="js/pgb.js"></script>
 		<script src="cordova.js"></script>
+		<script src="js/scrapper.js"></script>		
 		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
 		<script src="js/jquery-2.1.4.min.js"></script>
 		<script src="js/jquery.mobile-1.4.5.min.js"></script>
@@ -11,23 +12,107 @@
 	<body onload="init()">
 		
 		<!-- My app main page -->
-		<div data-role="page" id="pageone">
-		  <div data-role="header">
-			<h1>FashionR</h1>
-			<h2><i>Zaloguj się, aby kontynuować</i></h2>
-		  </div>
+		<div data-role="page" id="logInPage">
 		  <div data-role="main" class="ui-content">
-				<input type="email" placeholder="Login/Email" id="email"/>
+				<h1>FashionR</h1>
+				<p>Zaloguj się, aby kontynuować</p>
+				<input type="email" placeholder="Email" id="email"/>
 				<input type="password" placeholder="Hasło" id="password"/>
-				<button onclick="register()">Nie posiadasz konta? Zarejestruj się</button>
-				<button onclick="logIn()">Zaloguj</button>
+				<a>Zapomniałeś/aś hasła?</a><br>
+				<a>Nie posiadasz konta? Zarejestruj się</a>
+				<button type="submit">Zaloguj</button>
     		<button onclick="googleLogIn()">Zaloguj za pomocą Google+</button>
-    		<button onclick="facebookLogIn()">Zaloguj za pomocą Facebook</button>
+				<button onclick="facebookLogIn()">Zaloguj za pomocą Facebook</button>
+				<a href="#createAccountPage" class="ui-btn">Go to next page</a>
 		  </div>
-		  <div data-role="footer" data-position="fixed">
-			<h1>FashionR</h1>
-		  </div> 
-		</div>		
+		</div>
+		
+		 <div data-role="page" id="createAccountPage">
+				<div data-role="main" class="ui-content">
+					<h1>FashionR</h1>
+					<input type="email" placeholder="Email" id="email" required/>
+					<input type="password" placeholder="Hasło" id="password" required/>
+					<input type="password" placeholder="Powtórz hasło" id="passwordCheck" required/>
+					<p>Wybierz płeć:</p>
+					<div class="custom-select" style="width:200px;">
+							<select>
+								<option value="0">Kobieta</option>
+								<option value="1">Mężczyzna</option>
+							</select>
+					</div>
+					<button type="submit">--></button>
+					<a href="#logInPage" class="ui-btn">Go back</a>
+					<a href="#preferences" class="ui-btn">Go to next page</a>
+				</div>
+			</div>
+				
+			<div data-role="page" id="preferences">
+					<div data-role="main" class="ui-content">
+						<h1>Preferencje</h1>
+						<p>Wybierz płeć:</p>
+						<div class="custom-select" style="width:200px;">
+								<select>
+									<option value="0">Kobieta</option>
+									<option value="1">Mężczyzna</option>
+								</select>
+					
+						<p>Wybierz rozmiar ubrań:</p>
+						<div class="custom-select" style="width:200px;">
+							<select>
+								<option value="0">XS</option>
+								<option value="1">XS/S</option>
+								<option value="2">S</option>
+								<option value="3">S/M</option>
+								<option value="4">M</option>
+								<option value="5">M/L</option>
+								<option value="6">L</option>
+								<option value="7">L/XL</option>
+								<option value="8">XL</option>
+								<option value="9">XL/XXL</option>
+								<option value="10">XXL</option>
+							</select>
+
+							<label class="container">Koszule
+								<input type="checkbox">
+								<span class="checkmark"></span>
+							</label>
+
+							<label class="container">Spodnie
+								<input type="checkbox">
+								<span class="checkmark"></span>
+							</label>
+
+							<label class="container">Bluzy
+								<input type="checkbox">
+								<span class="checkmark"></span>
+							</label>
+
+							<label class="container">Bielizna
+								<input type="checkbox">
+								<span class="checkmark"></span>
+							</label>
+
+							<label class="container">Podkoszulki
+								<input type="checkbox">
+								<span class="checkmark"></span>
+							</label>
+						</div>
+							<button type="submit">--></button>
+							<a href="#logInPage" class="ui-btn">Go back</a>
+							<a href="#authorsPage" class="ui-btn">Go to next page</a>
+						</div>
+					</div>
+					</div>
+
+					<div data-role="page" id="authorsPage">
+							<div data-role="main" class="ui-content">
+								<h1>Autorzy</h1>
+								<p>Daniel Kucharczyk</p>
+								<p>Wojciech Wisła</p>
+								<p>Anna Żukowska</p>
+								<a href="#logInPage" class="ui-btn">Go back to logIn</a>
+							</div>
+					</div>
 
 		<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
 		<script>// Initialize Firebase
