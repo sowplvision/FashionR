@@ -2,28 +2,39 @@
 <html>
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-		<script src="js/pgb.js"></script>
-		<script src="cordova.js"></script>
-		<script src="js/scrapper.js"></script>		
-		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
 		<script src="js/jquery-2.1.4.min.js"></script>
 		<script src="js/jquery.mobile-1.4.5.min.js"></script>
+		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+		<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+		<script src="cordova.js"></script>
+		<script src="js/pgb.js"></script>
+		<script src="js/scrapper.js"></script>	
+		<script src="js/firebaseService.js"></script>			
 	</head>
 	<body onload="init()">
 		
 		<!-- My app main page -->
 		<div data-role="page" id="logInPage">
 		  <div data-role="main" class="ui-content">
-				<h1>FashionR</h1>
-				<p>Zaloguj się, aby kontynuować</p>
+		    <h1>FashionR</h1>
+			<p>Zaloguj się, aby kontynuować</p>
+		    
 				<input type="email" placeholder="Email" id="email"/>
 				<input type="password" placeholder="Hasło" id="password"/>
 				<a>Zapomniałeś/aś hasła?</a><br>
 				<a>Nie posiadasz konta? Zarejestruj się</a>
-				<button type="submit">Zaloguj</button>
-    		<button onclick="googleLogIn()">Zaloguj za pomocą Google+</button>
-				<button onclick="facebookLogIn()">Zaloguj za pomocą Facebook</button>
-				<a href="#createAccountPage" class="ui-btn">Go to next page</a>
+				<button id="login" class="btn btn-action">Zaloguj</button>
+				<button id="googleLogIn">Zaloguj za pomocą Google+</button>
+				<button id="facebookLogIn">Zaloguj za pomocą Facebook</button>
+			
+				<a href="#createAccountPage" class="ui-btn" id="zarejestruj">Go to next page</a>
+		  </div>
+		</div>
+		
+		<div data-role="page" id="loggedInPage">
+		  <div data-role="main" class="ui-content">
+		    <h1>FashionR</h1>
+			<p>Zostałeś zalogowany</p>
 		  </div>
 		</div>
 		
@@ -113,18 +124,5 @@
 								<a href="#logInPage" class="ui-btn">Go back to logIn</a>
 							</div>
 					</div>
-
-		<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
-		<script>// Initialize Firebase
-			var config = {
-    		apiKey: "AIzaSyCZy2Z-MotDZQbzo6ZF0M15xKX6TiQXL8U",
-    		authDomain: "fashionr-dad0c.firebaseapp.com",
-    		databaseURL: "https://fashionr-dad0c.firebaseio.com",
-    		projectId: "fashionr-dad0c",
-    		storageBucket: "fashionr-dad0c.appspot.com",
-    		messagingSenderId: "623115610733"
-  		};
-  	firebase.initializeApp(config);
-		</script>
 	</body>
 </html>
