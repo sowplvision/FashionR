@@ -168,6 +168,7 @@ function comparingCategories() {
     console.log("CroppWomanCategories: " + croppWomanCategories.length);
     console.log("CroppManCategories: " + croppManCategories.length);
 
+    alert("SUCCESS");
     //TODO made one standard for Woman and Man category
 }
 
