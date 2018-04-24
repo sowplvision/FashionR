@@ -19,10 +19,10 @@
 		    <h1>FashionR</h1>
 			<p>Zaloguj się, aby kontynuować</p>
 		    
-				<input type="email" placeholder="Email" id="email"/>
-				<input type="password" placeholder="Hasło" id="password"/>
+				<input type="email" placeholder="Email" id="emailLog"/>
+				<input type="password" placeholder="Hasło" id="passwordLog"/>
 				<a>Zapomniałeś/aś hasła?</a><br>
-				<a>Nie posiadasz konta? Zarejestruj się</a>
+				<a href="#createAccountPage" class="ui-btn">Nie posiadasz konta? Zarejestruj się</a>
 				<button id="login" class="btn btn-action">Zaloguj</button>
 				<button id="googleLogIn">Zaloguj za pomocą Google+</button>
 				<button id="facebookLogIn">Zaloguj za pomocą Facebook</button>
@@ -35,14 +35,15 @@
 		  <div data-role="main" class="ui-content">
 		    <h1>FashionR</h1>
 			<p>Zostałeś zalogowany</p>
+			<button id="logout" class="btn btn-action">Wyloguj</button>
 		  </div>
 		</div>
 		
 		 <div data-role="page" id="createAccountPage">
 				<div data-role="main" class="ui-content">
 					<h1>FashionR</h1>
-					<input type="email" placeholder="Email" id="email" required/>
-					<input type="password" placeholder="Hasło" id="password" required/>
+					<input type="email" placeholder="Email" id="emailReg" required/>
+					<input type="password" placeholder="Hasło" id="passwordReg" required/>
 					<input type="password" placeholder="Powtórz hasło" id="passwordCheck" required/>
 					<p>Wybierz płeć:</p>
 					<div class="custom-select" style="width:200px;">
@@ -51,7 +52,7 @@
 								<option value="1">Mężczyzna</option>
 							</select>
 					</div>
-					<button type="submit">--></button>
+					<button id="register">--></button>
 					<a href="#logInPage" class="ui-btn">Go back</a>
 					<a href="#preferences" class="ui-btn">Go to next page</a>
 				</div>
