@@ -62,7 +62,7 @@
 
 		btnGoogleLogIn.addEventListener('click', function() {
 			var provider = new firebase.auth.GoogleAuthProvider();
-			firebase.auth().signInWithPopup(provider).then(function(result) {
+			firebase.auth().signInWithRedirect(provider).then(function(result) {
 				var user = result.user;
 				console.log(user);
 			}).catch(function(error) {
@@ -74,7 +74,7 @@
 
 		btnFBLogIn.addEventListener('click', function() {
 			var provider = new firebase.auth.FacebookAuthProvider();
-			firebase.auth().signInWithPopup(provider).then(function(result) {
+			firebase.auth().signInWithRedirect(provider).then(function(result) {
 				var user = result.user;
 				console.log(user);
 			}).catch(function(error) {
