@@ -19,12 +19,14 @@ function scrapp(){
     //scrappCropp();
 
     //Wait until all ajax functions will done
+    /**
     $.when(scrappHouseClothing(),scrappCropp()).done(function () {
         comparingCategories();
     });
+     */
 
     //getHouseOffers("http://www.house.pl/pl/pl/ona/kolekcja/plaszcze-kurtki");
-    //getCroppOffers();
+    //getCroppOffers("https://www.cropp.com/pl/pl/chlopak/kolekcja/bluzy");
 }
 
 function scrappHouseClothing(){
@@ -215,7 +217,7 @@ function getHouseOffers(url){
 
 function getCroppOffers(url) {
     /**
-     * GET offers from Cropp site (url)
+     * GET offers from Cropp site (url) as JSON
      */
     $.ajax({
         url:url,
@@ -224,6 +226,25 @@ function getCroppOffers(url) {
             var i;
             var parser = new DOMParser();
             var doc = parser.parseFromString(data, "text/html");
+
+            //console.log(data);
+            var offers = doc.querySelectorAll("div[class='main-container'] script");
+            for (i = 0; i < offers.length; i++){
+                console.log(offers[i]);
+            }
+
+            //Replace function() elements cause data is in script return format
+            var str = offers[2].innerText;
+            var result = str.replace("(function () {\n" +
+                "            if (!window.getProductCollectionGroupedByModel) {\n" +
+                "                window.getProductCollectionGroupedByModel = function () {\n" +
+                "                    return ", "").replace(";\n" +
+                "                }\n" +
+                "            }\n" +
+                "        })();", "");
+
+            //Return in JSON format Category offers from Cropp
+            console.log(result);
 
             console.log("\r\nCROPP CATEGORY: " + url + "\r\n");
         },
