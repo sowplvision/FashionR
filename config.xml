@@ -18,7 +18,6 @@
     <plugin name="cordova-plugin-buildinfo"/>
     <plugin name="cordova-plugin-browsertab"/>
     <plugin name="cordova-plugin-inappbrowser"/>
-    <plugin name="cordova-plugin-facebook4" spec="~2.0.1"/>
 
     <allow-navigation href="*" />
     <allow-intent href="*" />
