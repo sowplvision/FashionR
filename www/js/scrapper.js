@@ -5,6 +5,7 @@ var croppWomanCategories;
 var croppManCategories;
 var womanCategory;
 var manCategory;
+var colorTable;
 
 function scrapp(){
     //Tables with categories
@@ -15,6 +16,7 @@ function scrapp(){
     croppManCategories = [];
     womanCategory = [];
     manCategory = [];
+    colorTable = ["inny","beżowy", "biały", "bordowy", "brązowy", "czarny", "czerwony", "kość słoniowa", "granatowy", "purpurowy", "niebieski", "pomarańczowy", "różowy", "srebrny", "szary", "turkusowy", "wielobarwny", "zielony", "złoty", "żółty", "", "surowy granatowy", "khaki"];
 
     //scrappHouseClothing();
     //scrappCropp();
@@ -204,22 +206,32 @@ function getHouseOffers(url){
 
             console.log("\r\nHOUSE CATEGORY: " + url + "\r\n");
 
-
+            /**
             var temp = doc.querySelectorAll("ul[id='color'] li");
             for (i = 0; i < temp.length; i++){
                 houseColorTable[temp[i].querySelector("input").getAttribute("value")] = "\"" + temp[i].querySelector("p").innerText + "\"";
                 console.log(houseColorTable[temp[i].querySelector("input").getAttribute("value")]);
             }
+             */
 
             //console.log(data);
 
+            var str = "{";
+
             var offers = doc.querySelectorAll("div[id^='product-']");
             for (i = 0; i < offers.length; i++){
-                console.log(offers[i]);
-                var str = convertHouseOfferToJSON(offers[i]);
-                console.log(str);
+                //console.log(offers[i]);
+                var temp = convertHouseOfferToJSON(offers[i]);
+                str += temp + ",";
             }
             //console.log(i);
+
+            str = str.replace(/.$/,"}");
+
+            var json = JSON.parse(str);
+
+            console.log(json);
+            console.log(Object.keys(json).length);
         },
         error:function (data) {
 
@@ -270,7 +282,8 @@ function convertHouseOfferToJSON(offer) {
     //console.log(name);
 
     temp = offer.getAttribute("data-properties").split(",");
-    var colorName;
+    var colorName = "\"color_name\":\"" + colorTable[temp[2].replace("\"color\":[\"","").replace("\"]","")] + "\"";
+    /**
     if (temp[2].replace("\"color\":[\"","").replace("\"]","")==0){
         //colorName = "\"color_name\":\"" + temp[2].replace("\"color\":[\"","").replace("\"]","") + "\"";
         colorName = "\"color_name\":\"" + "inny" + "\"";
@@ -278,8 +291,9 @@ function convertHouseOfferToJSON(offer) {
     else {
         colorName = "\"color_name\":" + houseColorTable[temp[2].replace("\"color\":[\"","").replace("\"]","")];
     }
+     */
     //console.log(houseColorTable[temp[2].replace("\"color\":[\"","").replace("\"]","")]);
-    console.log(colorName);
+    //console.log(colorName);
 
     temp = offer.querySelectorAll("span[class*='colorImg']");
     var colors = "\"colors\":[";
@@ -301,12 +315,27 @@ function convertHouseOfferToJSON(offer) {
 
     //console.log(colors);
 
-    var str = "{"+ obj + ":{"+ model + "," + id + "," + sku + "," + name;
+    temp = offer.getAttribute("data-img-medium");
+    var image = "\"image_front\":\"" + temp + "\"";
+
+    //console.log(image);
+
+    temp = offer.querySelector("a[class='productLink']").getAttribute("href");
+    var url = "\"url\":\"" + temp + "\"";
+
+    //console.log(url);
+
+    var str = "";
+    //str = "{";
+    str += obj + ":{"+ model + "," + id + "," + sku + "," + name;
     str += "," + specialPrice + "," + orginalPrice + "," + price;
-    str += "," + colorName + "," + colors +"}}";
+    str += "," + colorName + "," + colors;
+    str += "," + image + "," + url;
+    str += "}";
+    //str += "}";
     //console.log(str);
 
-    var json = JSON.parse(str);
+    //var json = JSON.parse(str);
 
     return str;
 }
@@ -335,7 +364,11 @@ function getCroppOffers(url) {
             //All offers value
             var str = offers[2].innerText;
 
-            convertCroppOffersToJSON(str);
+            var json = convertCroppOffersToJSON(str);
+
+            console.log(json);
+
+            console.log(Object.keys(json).length);
         },
         error:function (data) {
 
@@ -356,10 +389,6 @@ function convertCroppOffersToJSON(str) {
     //console.log(result);
     //Return in JSON format offers from Cropp
     var json = JSON.parse(result);
-
-    console.log(json);
-    //Array size
-    console.log(Object.keys(json).length);
 
     return json;
 }
