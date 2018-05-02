@@ -3,8 +3,6 @@ var houseManCategories;
 //var houseColorTable;
 var croppWomanCategories;
 var croppManCategories;
-var womanCategory;
-var manCategory;
 var colorTable;
 
 function scrapp(){
@@ -14,13 +12,13 @@ function scrapp(){
     //houseColorTable = [];
     croppWomanCategories = [];
     croppManCategories = [];
-    womanCategory = [];
-    manCategory = [];
+    //Tables of colors for House
     colorTable = ["inny","beżowy", "biały", "bordowy", "brązowy", "czarny", "czerwony", "kość słoniowa", "granatowy", "purpurowy", "niebieski", "pomarańczowy", "różowy", "srebrny", "szary", "turkusowy", "wielobarwny", "zielony", "złoty", "żółty", "", "surowy granatowy", "khaki"];
 
     //Wait until all ajax functions will done
     $.when(scrappHouseClothing(),scrappCropp()).done(function () {
-        comparingCategories();
+        convertWomanCategoriesTOJSON();
+        convertManCategoriesTOJSON();
     });
 
     //getHouseOffers("http://www.house.pl/pl/pl/ona/kolekcja/bluzki-koszule");
@@ -35,32 +33,35 @@ function scrappHouseClothing(){
         url:"http://www.house.pl/pl/pl/",
         dataType:"html",
         success:function (data) {
-            console.log("\r\nHOUSE\r\n");
+            //console.log("\r\nHOUSE\r\n");
             var i;
             var parser = new DOMParser();
             var doc = parser.parseFromString(data, "text/html");
 
             //Get Woman categories
-            console.log("\r\nWOMAN\r\n");
+            //console.log("\r\nWOMAN\r\n");
             var womanCategories = doc.querySelectorAll("ul[id='womanCategory'] li[class='default'] a");
             for (i = 0; i < womanCategories.length; i++){
                 if (!womanCategories[i].getAttribute("href").includes("sprawdz-to")) {
-                    console.log(womanCategories[i].innerText + " " + womanCategories[i].getAttribute("href"));
+                    //console.log(womanCategories[i].innerText + " " + womanCategories[i].getAttribute("href"));
                     //Add category to array
                     houseWomanCategories.push(womanCategories[i]);
                 }
             }
 
             //Get Man categories
-            console.log("\r\nMAN\r\n");
+            //console.log("\r\nMAN\r\n");
             var manCategories = doc.querySelectorAll("ul[id='manCategory'] li[class='default'] a");
             for (i = 0; i < manCategories.length; i++){
                 if (!manCategories[i].getAttribute("href").includes("sprawdz-to")) {
-                    console.log(manCategories[i].innerText + " " + manCategories[i].getAttribute("href"));
+                    //console.log(manCategories[i].innerText + " " + manCategories[i].getAttribute("href"));
                     //Add category to array
                     houseManCategories.push(manCategories[i]);
                 }
             }
+
+            //console.log("HouseWomanCategories: " + houseWomanCategories.length);
+            //console.log("HouseManCategories: " + houseManCategories.length);
         },
         error: function (data) {
 
@@ -76,28 +77,31 @@ function scrappCropp(){
         url:"https://www.cropp.com/",
         dataType:"html",
         success:function (data) {
-            console.log("\r\nCROPP\r\n");
+            //console.log("\r\nCROPP\r\n");
             var i;
             var parser = new DOMParser();
             var doc = parser.parseFromString(data, "text/html");
 
             //Get Woman categories
-            console.log("\r\nWOMAN\r\n");
+            //console.log("\r\nWOMAN\r\n");
             var womanCategories = doc.querySelectorAll("ul[class='level1'] li[class*='nav-1-3'] a");
             for (i = 0; i < womanCategories.length; i++){
-                console.log(womanCategories[i].innerText + " " +  womanCategories[i].getAttribute("href"));
+                //console.log(womanCategories[i].innerText + " " +  womanCategories[i].getAttribute("href"));
                 //Add category to array
                 croppWomanCategories.push(womanCategories[i]);
             }
 
             //Get Man categories
-            console.log("\r\nMAN\r\n");
+            //console.log("\r\nMAN\r\n");
             var manCategories = doc.querySelectorAll("ul[class='level1'] li[class*='nav-2-3'] a");
             for (i = 0; i < manCategories.length; i++){
-                console.log(manCategories[i].innerText + " " +  manCategories[i].getAttribute("href"));
+                //console.log(manCategories[i].innerText + " " +  manCategories[i].getAttribute("href"));
                 //Add category to array
                 croppManCategories.push(manCategories[i]);
             }
+
+            //console.log("CroppWomanCategories: " + croppWomanCategories.length);
+            //console.log("CroppManCategories: " + croppManCategories.length);
         },
         error: function (data) {
 
@@ -105,19 +109,69 @@ function scrappCropp(){
     });
 }
 
-function comparingCategories() {
-    //Number of scrapped categories from websites
-    console.log("HouseWomanCategories: " + houseWomanCategories.length);
-    console.log("HouseManCategories: " + houseManCategories.length);
-    console.log("CroppWomanCategories: " + croppWomanCategories.length);
-    console.log("CroppManCategories: " + croppManCategories.length);
+function findCategoryUrl(categoryName, arrayName){
+    //Search for categoryName in array
+    for (var i = 0; i < arrayName.length; i++){
+        if (arrayName[i].innerText.includes(categoryName)){
+            //console.log(arrayName[i].getAttribute("href"));
+            return "\"" + arrayName[i].getAttribute("href") + "\"";
+        }
+    }
+    return "";
+}
 
+function convertWomanCategoriesTOJSON() {
+    //convert woman categories to JSON
     var str = "";
     str += "{";
 
-
+    str += "\"T-shirty, topy\":{\"House\":[" + findCategoryUrl("T-shirty", houseWomanCategories) + "], \"Cropp\":[" + findCategoryUrl("KOSZULKI", croppWomanCategories) + "]},";
+    str += "\"Kurtki, kamizelki, płaszcze\":{\"House\":[" + findCategoryUrl("Kurtki", houseWomanCategories) + "], \"Cropp\":[" + findCategoryUrl("KURTKI", croppWomanCategories) + "]},";
+    str += "\"Bluzki, koszule\":{\"House\":[" + findCategoryUrl("Bluzki", houseWomanCategories) + "], \"Cropp\":[" + findCategoryUrl("BLUZKI", croppWomanCategories) + "," + findCategoryUrl("KOSZULE", croppWomanCategories) + "]},";
+    str += "\"Spodnie\":{\"House\":[" + findCategoryUrl("Spodnie", houseWomanCategories) + "], \"Cropp\":[" + findCategoryUrl("SPODNIE", croppWomanCategories) + "]},";
+    str += "\"Sukienki, kombinezony\":{\"House\":[" + findCategoryUrl("Sukienki", houseWomanCategories) + "], \"Cropp\":[" + findCategoryUrl("SUKIENKI", croppWomanCategories) + "]},";1
+    str += "\"Jeansy\":{\"House\":[" + findCategoryUrl("Jeansy", houseWomanCategories) + "], \"Cropp\":[" + findCategoryUrl("JEANSY", croppWomanCategories) + "]},";
+    str += "\"Bluzy\":{\"House\":[" + findCategoryUrl("Bluzy", houseWomanCategories) +"], \"Cropp\":[" + findCategoryUrl("BLUZY", croppWomanCategories) + "]},";
+    str += "\"Swetry\":{\"House\":[" + findCategoryUrl("Swetry", houseWomanCategories) + "], \"Cropp\":[" + findCategoryUrl("SWETRY", croppWomanCategories) + "]},";
+    str += "\"Spódnice\":{\"House\":[" + findCategoryUrl("Spódnice", houseWomanCategories) + "], \"Cropp\":[" + findCategoryUrl("SPÓDNICE", croppWomanCategories) + "]},";
+    str += "\"Szorty\":{\"House\":[" + findCategoryUrl("Szorty", houseWomanCategories) + "], \"Cropp\":[" + findCategoryUrl("SZORTY", croppWomanCategories)+ "]},";
+    str += "\"Na plażę\":{\"House\":[" + findCategoryUrl("Na plażę", houseWomanCategories) + "], \"Cropp\":[" + findCategoryUrl("KOLEKCJA PLAŻOWA", croppWomanCategories) + "]},";
+    str += "\"Torby, plecaki\":{\"House\":[" + findCategoryUrl("Torby", houseWomanCategories) + "], \"Cropp\":[" + findCategoryUrl("TORBY", croppWomanCategories)+ "]},";
+    str += "\"Bielizna, piżamy\":{\"House\":[" + findCategoryUrl("Bielizna", houseWomanCategories)+ "], \"Cropp\":[" + findCategoryUrl("BIELIZNA", croppWomanCategories) + "]},";
+    str += "\"Buty\":{\"House\":[" + findCategoryUrl("Buty", houseWomanCategories) + "], \"Cropp\":[" + findCategoryUrl("BUTY", croppWomanCategories) + "]},";
+    str += "\"Akcesoria\":{\"House\":[" + findCategoryUrl("Akcesoria", houseWomanCategories) + "," + findCategoryUrl("Okulary", houseWomanCategories) + "," + findCategoryUrl("Szale", houseWomanCategories) + "], \"Cropp\":[" + findCategoryUrl("AKCESORIA", croppWomanCategories) + "]},";
+    str += "\"Biżuteria\":{\"House\":[" + findCategoryUrl("Biżuteria", houseWomanCategories) +"], \"Cropp\":[" + findCategoryUrl("BIŻUTERIA", croppWomanCategories) + "]},";
+    str += "\"Paski, portfele\":{\"House\":[" + findCategoryUrl("Paski", houseWomanCategories) + "," + findCategoryUrl("Portfele", houseWomanCategories) + "], \"Cropp\":[" + findCategoryUrl("PASKI", croppWomanCategories) + "]}";
 
     str += "}";
+
+    var json = JSON.parse(str);
+    console.log(json);
+}
+
+function convertManCategoriesTOJSON() {
+    //conver man categories to JSON
+    var str = "";
+    str += "{";
+
+    str += "\"T-shirty\":{\"House\":[" + findCategoryUrl("T-shirty", houseManCategories) + "], \"Cropp\":[" + findCategoryUrl("KOSZULKI", croppManCategories) + "]},";
+    str += "\"Kurtki, kamizelki, płaszcze\":{\"House\":[" + findCategoryUrl("Kurtki", houseManCategories) + "], \"Cropp\":[" + findCategoryUrl("KURTKI", croppManCategories) + "]},";
+    str += "\"Koszule\":{\"House\":[" + findCategoryUrl("Koszule", houseManCategories) + "], \"Cropp\":[" + findCategoryUrl("KOSZULE", croppManCategories) + "]},";
+    str += "\"Spodnie\":{\"House\":[" + findCategoryUrl("Spodnie", houseManCategories) + "], \"Cropp\":[" + findCategoryUrl("SPODNIE", croppManCategories) + "]},";
+    str += "\"Jeansy\":{\"House\":[" + findCategoryUrl("Jeansy", houseManCategories) + "], \"Cropp\":[" + findCategoryUrl("JEANS", croppManCategories) + "]},";
+    str += "\"Bluzy\":{\"House\":[" + findCategoryUrl("Bluzy", houseManCategories) + "," + findCategoryUrl("Swetry", houseManCategories) + "], \"Cropp\":[" + findCategoryUrl("BLUZY", croppManCategories) + "]},";
+    str += "\"Szorty\":{\"House\":[" + findCategoryUrl("Szorty", houseManCategories) + "], \"Cropp\":[" + findCategoryUrl("SZORTY", croppManCategories) + "]},";
+    str += "\"Na plażę\":{\"House\":[" + findCategoryUrl("Na plażę", houseManCategories) + "], \"Cropp\":[" + findCategoryUrl("KOLEKCJA PLAŻOWA", croppManCategories) + "]},";
+    str += "\"Buty\":{\"House\":[" + findCategoryUrl("Buty", houseManCategories) + "], \"Cropp\":[" + findCategoryUrl("BUTY", croppManCategories) + "]},";
+    str += "\"Bielizna, piżamy\":{\"House\":[" + findCategoryUrl("Bielizna", houseManCategories) + "], \"Cropp\":[" + findCategoryUrl("BIELIZNA", croppManCategories) + "]},";
+    str += "\"Paski, portfele\":{\"House\":[" + findCategoryUrl("Paski", houseManCategories) + "," + findCategoryUrl("Portfele", houseManCategories) + "], \"Cropp\":[" + findCategoryUrl("PASKI", croppManCategories) + "]},";
+    str += "\"Akcesoria\":{\"House\":[" + findCategoryUrl("Akcesoria", houseManCategories) + "," + findCategoryUrl("Czapki", houseManCategories) + "], \"Cropp\":[" + findCategoryUrl("AKCESORIA", croppManCategories) + "]},";
+    str += "\"Torby, plecaki\":{\"House\":[" + findCategoryUrl("Torby", houseManCategories) + "], \"Cropp\":[" + findCategoryUrl("TORBY", croppManCategories) + "]}";
+
+    str += "}";
+
+    var json = JSON.parse(str);
+    console.log(json);
 }
 
 function getHouseOffers(url){
@@ -132,7 +186,7 @@ function getHouseOffers(url){
             var parser = new DOMParser();
             var doc = parser.parseFromString(data, "text/html");
 
-            console.log("\r\nHOUSE CATEGORY: " + url + "\r\n");
+            //console.log("\r\nHOUSE CATEGORY: " + url + "\r\n");
 
             /**
             var temp = doc.querySelectorAll("ul[id='color'] li");
@@ -144,16 +198,19 @@ function getHouseOffers(url){
 
             //console.log(data);
 
+            //convert HTML data into JSON format
             var str = "{";
 
             var offers = doc.querySelectorAll("div[id^='product-']");
             for (i = 0; i < offers.length; i++){
                 //console.log(offers[i]);
+                //convert single offer to JSON
                 var temp = convertHouseOfferToJSON(offers[i]);
                 str += temp + ",";
             }
             //console.log(i);
 
+            //remove last ',' from string before parsing
             str = str.replace(/.$/,"}");
 
             var json = JSON.parse(str);
@@ -168,22 +225,29 @@ function getHouseOffers(url){
 }
 
 function convertHouseOfferToJSON(offer) {
+    /**
+     * Converting single House offer from HTML to JSON
+     */
     var temp;
     var i;
 
+    //get product ID
     temp = offer.querySelector("div[class='hover'] a").getAttribute("data-api-quickshop");
     var id = temp.replace("{\"product\":","\"id\":").replace("}","");
     //console.log(id);
 
+    //get sku of product
     temp = offer.getAttribute("data-sku");
     var sku = "\"sku\":\""+ temp +"\"";
     var obj = sku.replace("\"sku\":","");
     //console.log(sku);
 
+    //get model
     temp = temp.split("-");
     var model = "\"model\":\""+ temp[0] +"\"";
     //console.log(model);
 
+    //get price
     temp = offer.getAttribute("data-price");
     var orginalPrice = "\"orginal_price\":\""+ temp +"\"";
 
@@ -204,15 +268,18 @@ function convertHouseOfferToJSON(offer) {
     //console.log(orginalPrice);
     //console.log(specialPrice);
 
+    //get name of offer
     temp = offer.querySelector("p[class='name']");
     var name = "\"name\":\"" + temp.innerText + "\"";
 
     //console.log(name);
 
+    //get colorName of product
     temp = offer.getAttribute("data-properties").split(",");
     var colorName = "\"color_name\":\"" + colorTable[temp[2].replace("\"color\":[\"","").replace("\"]","")] + "\"";
 
     /**
+     // alternative way to get colorNames
     if (temp[2].replace("\"color\":[\"","").replace("\"]","")==0){
         //colorName = "\"color_name\":\"" + temp[2].replace("\"color\":[\"","").replace("\"]","") + "\"";
         colorName = "\"color_name\":\"" + "inny" + "\"";
@@ -223,6 +290,7 @@ function convertHouseOfferToJSON(offer) {
      */
     //console.log(colorName);
 
+    //get colors of this model
     temp = offer.querySelectorAll("span[class*='colorImg']");
     var colors = "\"colors\":[";
     for(i = 0; i < temp.length; i++){
@@ -243,16 +311,19 @@ function convertHouseOfferToJSON(offer) {
 
     //console.log(colors);
 
+    //get product img
     temp = offer.getAttribute("data-img-medium");
     var image = "\"image_front\":\"" + temp + "\"";
 
     //console.log(image);
 
+    //get url to offer details
     temp = offer.querySelector("a[class='productLink']").getAttribute("href");
     var url = "\"url\":\"" + temp + "\"";
 
     //console.log(url);
 
+    //concat all data into single object in JSON standard
     var str = "";
     //str = "{";
     str += obj + ":{"+ model + "," + id + "," + sku + "," + name;
@@ -280,7 +351,7 @@ function getCroppOffers(url) {
             var parser = new DOMParser();
             var doc = parser.parseFromString(data, "text/html");
 
-            console.log("\r\nCROPP CATEGORY: " + url + "\r\n");
+            //console.log("\r\nCROPP CATEGORY: " + url + "\r\n");
 
             //console.log(data);
             var offers = doc.querySelectorAll("div[class='main-container'] script");
@@ -292,10 +363,10 @@ function getCroppOffers(url) {
             //All offers value
             var str = offers[2].innerText;
 
+            //Convert offers to JSON format
             var json = convertCroppOffersToJSON(str);
 
             console.log(json);
-
             console.log(Object.keys(json).length);
         },
         error:function (data) {
