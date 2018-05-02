@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html>
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 		<script src="js/jquery-2.1.4.min.js"></script>
 		<script src="js/jquery.mobile-1.4.5.min.js"></script>
 		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/buttons.css" />
 		<!-- <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script> -->
 		<script src="js/firebase.js"></script>
 		<script src="cordova.js"></script>
@@ -17,26 +20,21 @@
 		<!-- My app main page -->
 		<div data-role="page" id="logInPage">
 		  <div data-role="main" class="ui-content">
-		    <h1>FashionR</h1>
-			<p>Zaloguj się, aby kontynuować</p>
-		    
-				<input type="email" placeholder="Email" id="emailLog"/>
-				<input type="password" placeholder="Hasło" id="passwordLog"/>
-				<a>Zapomniałeś/aś hasła?</a><br>
-				<a href="#createAccountPage" class="ui-btn">Nie posiadasz konta? Zarejestruj się</a>
-				<!--
-				<button id="login" class="btn btn-action">Zaloguj</button>
-				<button id="googleLogIn">Zaloguj za pomocą Google+</button>
-				<button id="facebookLogIn">Zaloguj za pomocą Facebook</button>
-			  	<button id="tester" onclick="scrapp()">TESTER</button>
-			  	-->
-
-                <a href="#" id="login" class="ui-btn">Zaloguj</a>
-                <a href="#" id="googleLogIn" class="ui-btn">Zaloguj za pomocą Google+</a>
-                <a href="#" id="facebookLogIn" class="ui-btn">Zaloguj za pomocą Facebook</a>
-                <a href="#" id="tester" class="ui-btn" onclick="scrapp()">TESTER</a>
-			
-				<a href="#createAccountPage" class="ui-btn" id="zarejestruj">Go to next page</a>
+			  <div class="login-box">
+				<div class="firstHeader">
+					<h1>FashionR</h1>
+					<p>Zaloguj się</p>
+				</div>
+				<div class="formSignIn">
+					<input type="email" data-role="none" placeholder="Email" id="emailLog"/>
+					<input type="password" data-role="none" placeholder="Hasło" id="passwordLog"/>
+				</div>
+				<a href="#" id="lostPassword" class="ui-btn">Zapomniałeś hasła?</a>
+				<a href="#" id="login" class="loginBtn--firebase"><div class="ui-btn loginFirebaseImage"></div></a>
+				<button id="facebookLogIn" data-role="none" class="loginBtn loginBtn--facebook">Login with Facebook</button>
+				<button id="googleLogIn" data-role="none" class="loginBtn loginBtn--google">Login with Google</button>
+				<a href="#createAccountPage" data-role="none" class="ui-btn btnRegister">Lub utwórz konto</a>
+			  </div>
 		  </div>
 		</div>
 		
@@ -50,20 +48,25 @@
 		
 		 <div data-role="page" id="createAccountPage">
 				<div data-role="main" class="ui-content">
-					<h1>FashionR</h1>
-					<input type="email" placeholder="Email" id="emailReg" required/>
-					<input type="password" placeholder="Hasło" id="passwordReg" required/>
-					<input type="password" placeholder="Powtórz hasło" id="passwordCheck" required/>
-					<p>Wybierz płeć:</p>
-					<div class="custom-select" style="width:200px;">
+					<div class="login-box">
+						<div class="firstHeader">
+							<h1>FashionR</h1>
+							<p>Zaloguj się, aby kontynuować</p>
+						</div>
+						<input type="email" placeholder="Email" id="emailReg" required/>
+						<input type="password" placeholder="Hasło" id="passwordReg" required/>
+						<input type="password" placeholder="Powtórz hasło" id="passwordCheck" required/>
+						<p>Wybierz płeć:</p>
+						<div class="custom-select" style="width:200px;">
 							<select>
 								<option value="0">Kobieta</option>
 								<option value="1">Mężczyzna</option>
 							</select>
+						</div>
+						<button id="register">--></button>
+						<a href="#logInPage" class="ui-btn">Go back</a>
+						<a href="#preferences" class="ui-btn">Go to next page</a>
 					</div>
-					<button id="register">--></button>
-					<a href="#logInPage" class="ui-btn">Go back</a>
-					<a href="#preferences" class="ui-btn">Go to next page</a>
 				</div>
 			</div>
 				
