@@ -1,6 +1,6 @@
 function init() {
     document.addEventListener("deviceready",onDeviceReady, false);
-    listCategories();
+    scrapp();
 }
 
 function onDeviceReady() {
@@ -10,5 +10,16 @@ function onDeviceReady() {
 function listCategories() {
     var e = document.getElementById("gender");
     var value = e.options[e.selectedIndex].value;
-    document.getElementById("clothesCategories").innerHTML = "<input type='checkbox' id='cat1'><label for='cat1'>TEST</label>";
+    var categories;
+    var html = "";
+    if (value==='1'){
+        categories = getCategories('woman');
+    }
+    else {
+        categories = getCategories('man');
+    }
+    for (var category in categories){
+        html += "<label><input class='category' type='checkbox' id='"+ category +"'/>" + category + "</label>";
+    }
+    document.getElementById("clothesCategories").innerHTML = html;
 }

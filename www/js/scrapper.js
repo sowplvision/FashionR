@@ -4,6 +4,17 @@ var houseManCategories;
 var croppWomanCategories;
 var croppManCategories;
 var colorTable;
+var womanCategories;
+var manCategories;
+
+function getCategories(type) {
+    if(type==='woman'){
+        return womanCategories;
+    }
+    else if (type==='man'){
+        return manCategories
+    }
+}
 
 function scrapp(){
     //Tables with categories
@@ -16,8 +27,8 @@ function scrapp(){
     colorTable = ["inny","beżowy", "biały", "bordowy", "brązowy", "czarny", "czerwony", "kość słoniowa", "granatowy", "purpurowy", "niebieski", "pomarańczowy", "różowy", "srebrny", "szary", "turkusowy", "wielobarwny", "zielony", "złoty", "żółty", "", "surowy granatowy", "khaki"];
 
     $.when(scrappHouseClothing(),scrappCropp()).done(function () {
-        var womanCategories = convertWomanCategoriesTOJSON();
-        var manCategories = convertManCategoriesTOJSON();
+        womanCategories = convertWomanCategoriesTOJSON();
+        manCategories = convertManCategoriesTOJSON();
     });
 
     //getHouseOffers("http://www.house.pl/pl/pl/ona/kolekcja/bluzki-koszule");
