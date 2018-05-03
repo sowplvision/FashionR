@@ -51,13 +51,14 @@
 					<div class="login-box">
 						<div class="firstHeader">
 							<h1>FashionR</h1>
-							<p>Zaloguj się, aby kontynuować</p>
+							<p>Zarejestruj się, aby kontynuować</p>
 						</div>
-						<input type="email" placeholder="Email" id="emailReg" required/>
-						<input type="password" placeholder="Hasło" id="passwordReg" required/>
-						<input type="password" placeholder="Powtórz hasło" id="passwordCheck" required/>
+						<div class="formRegister">
+						<input type="email" data-role="none" placeholder="Email" id="emailReg" required/>
+						<input type="password" data-role="none" placeholder="Hasło" id="passwordReg" required/>
+						<input type="password" data-role="none" placeholder="Powtórz hasło" id="passwordCheck" required/>
 						<p>Wybierz płeć:</p>
-						<div class="custom-select" style="width:200px;">
+						<div class="custom-select" style="width:300px;">
 							<select>
 								<option value="0">Kobieta</option>
 								<option value="1">Mężczyzna</option>
@@ -66,6 +67,7 @@
 						<button id="register">--></button>
 						<a href="#logInPage" class="ui-btn">Go back</a>
 						<a href="#preferences" class="ui-btn">Go to next page</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -74,15 +76,15 @@
 					<div data-role="main" class="ui-content">
 						<h1>Preferencje</h1>
 						<p>Wybierz płeć:</p>
-						<div class="custom-select" style="width:200px;">
-								<select>
-									<option value="0">Kobieta</option>
-									<option value="1">Mężczyzna</option>
+						<div class="custom-select">
+								<select id="gender" onchange="listCategories()">
+									<option value="1">Kobieta</option>
+									<option value="2">Mężczyzna</option>
 								</select>
 					
 						<p>Wybierz rozmiar ubrań:</p>
-						<div class="custom-select" style="width:200px;">
-							<select>
+						<div class="custom-select">
+							<select id="size">
 								<option value="0">XS</option>
 								<option value="1">XS/S</option>
 								<option value="2">S</option>
@@ -95,31 +97,31 @@
 								<option value="9">XL/XXL</option>
 								<option value="10">XXL</option>
 							</select>
+							<div id="clothesCategories"></div>
+								<label class="container">Koszule
+									<input type="checkbox">
+									<span class="checkmark"></span>
+								</label>
 
-							<label class="container">Koszule
-								<input type="checkbox">
-								<span class="checkmark"></span>
-							</label>
+								<label class="container">Spodnie
+									<input type="checkbox">
+									<span class="checkmark"></span>
+								</label>
 
-							<label class="container">Spodnie
-								<input type="checkbox">
-								<span class="checkmark"></span>
-							</label>
+								<label class="container">Bluzy
+									<input type="checkbox">
+									<span class="checkmark"></span>
+								</label>
 
-							<label class="container">Bluzy
-								<input type="checkbox">
-								<span class="checkmark"></span>
-							</label>
+								<label class="container">Bielizna
+									<input type="checkbox">
+									<span class="checkmark"></span>
+								</label>
 
-							<label class="container">Bielizna
-								<input type="checkbox">
-								<span class="checkmark"></span>
-							</label>
-
-							<label class="container">Podkoszulki
-								<input type="checkbox">
-								<span class="checkmark"></span>
-							</label>
+								<label class="container">Podkoszulki
+									<input type="checkbox">
+									<span class="checkmark"></span>
+								</label>
 						</div>
 							<button type="submit">--></button>
 							<a href="#logInPage" class="ui-btn">Go back</a>

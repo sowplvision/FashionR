@@ -51,7 +51,7 @@ body {
     background-color: transparent !important;
 }
 
-#logInPage.ui-page, #createAccountPage.ui-page{
+#logInPage.ui-page, #createAccountPage.ui-page, #preferences{
     background-color: transparent !important;
     background: url(../img/blurred-background-1.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
@@ -98,12 +98,13 @@ body {
     color: #142e3f;
 }
 
-.login-box .formSignIn input{
+.login-box .formSignIn input, .login-box .formRegister input{
     background-color: transparent;
     width: 100%;
     margin-top: 10px;
 }
-.login-box .formSignIn input[type="email"], input[type="password"]
+.login-box .formSignIn input[type="email"], input[type="password"],
+.login-box .formRegister input[type="email"], input[type="password"]
 {
     font: 3vh 'ABeeZee', Arial, Helvetica, sans-serif;
     font-weight: lighter;
