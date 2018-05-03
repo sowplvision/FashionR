@@ -57,14 +57,7 @@
 						<input type="email" data-role="none" placeholder="Email" id="emailReg" required/>
 						<input type="password" data-role="none" placeholder="Hasło" id="passwordReg" required/>
 						<input type="password" data-role="none" placeholder="Powtórz hasło" id="passwordCheck" required/>
-						<p>Wybierz płeć:</p>
-						<div class="custom-select" style="width:300px;">
-							<select>
-								<option value="0">Kobieta</option>
-								<option value="1">Mężczyzna</option>
-							</select>
-						</div>
-						<button id="register">--></button>
+						<button id="register" data-role="none" class="loginBtn loginBtnFirebase">Zarejestruj konto</button>
 						<a href="#logInPage" class="ui-btn">Go back</a>
 						<a href="#preferences" class="ui-btn">Go to next page</a>
 						</div>
@@ -74,61 +67,37 @@
 				
 			<div data-role="page" id="preferences">
 					<div data-role="main" class="ui-content">
-						<h1>Preferencje</h1>
-						<p>Wybierz płeć:</p>
-						<div class="custom-select">
-								<select id="gender" onchange="listCategories()">
-									<option value="1">Kobieta</option>
-									<option value="2">Mężczyzna</option>
+						<div class="login-box">
+							<div class="custom-select">
+									<select id="gender" onchange="listCategories()">
+										<option value="0">Wybierz płeć:</option>
+										<option value="1">Kobieta</option>
+										<option value="2">Mężczyzna</option>
+									</select>
+							<div class="custom-select">
+								<select id="size">
+									<option value="0">Wybierz rozmiar ubrań:</option>
+									<option value="1">XS</option>
+									<option value="2">XS/S</option>
+									<option value="3">S</option>
+									<option value="4">S/M</option>
+									<option value="5">M</option>
+									<option value="6">M/L</option>
+									<option value="7">L</option>
+									<option value="8">L/XL</option>
+									<option value="9">XL</option>
+									<option value="10">XL/XXL</option>
+									<option value="11">XXL</option>
 								</select>
-					
-						<p>Wybierz rozmiar ubrań:</p>
-						<div class="custom-select">
-							<select id="size">
-								<option value="0">XS</option>
-								<option value="1">XS/S</option>
-								<option value="2">S</option>
-								<option value="3">S/M</option>
-								<option value="4">M</option>
-								<option value="5">M/L</option>
-								<option value="6">L</option>
-								<option value="7">L/XL</option>
-								<option value="8">XL</option>
-								<option value="9">XL/XXL</option>
-								<option value="10">XXL</option>
-							</select>
-							<div id="clothesCategories"></div>
-								<label class="container">Koszule
-									<input type="checkbox">
-									<span class="checkmark"></span>
-								</label>
-
-								<label class="container">Spodnie
-									<input type="checkbox">
-									<span class="checkmark"></span>
-								</label>
-
-								<label class="container">Bluzy
-									<input type="checkbox">
-									<span class="checkmark"></span>
-								</label>
-
-								<label class="container">Bielizna
-									<input type="checkbox">
-									<span class="checkmark"></span>
-								</label>
-
-								<label class="container">Podkoszulki
-									<input type="checkbox">
-									<span class="checkmark"></span>
-								</label>
-						</div>
-							<button type="submit">--></button>
-							<a href="#logInPage" class="ui-btn">Go back</a>
-							<a href="#authorsPage" class="ui-btn">Go to next page</a>
+								<div id="clothesCategories"></div>
+							</div>
+								<button id="submit" data-role="none" class="loginBtn loginBtnFirebase">Zapisz preferencje</button>
+								<a href="#logInPage" class="ui-btn">Go back</a>
+								<a href="#authorsPage" class="ui-btn">Go to next page</a>
 						</div>
 					</div>
-					</div>
+				</div>
+			</div>
 
 					<div data-role="page" id="authorsPage">
 							<div data-role="main" class="ui-content">
