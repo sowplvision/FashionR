@@ -19,7 +19,7 @@ function listCategories() {
         categories = getCategories('man');
     }
     for (var category in categories){
-        html += "<label><input class='category' type='checkbox' id='"+ category +"'/>" + category + "</label>";
+        html += "<div class='check'><input type='checkbox' id='"+ category +"'/><label for='"+ category +"'><div class='box'><i class='fa fa-check'></i></div>&nbsp;" + category + "</label></div>";
     }
     document.getElementById("clothesCategories").innerHTML = html;
 }

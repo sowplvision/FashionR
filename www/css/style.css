@@ -51,7 +51,7 @@ body {
     background-color: transparent !important;
 }
 
-#logInPage.ui-page, #createAccountPage.ui-page, #preferences{
+#logInPage.ui-page, #createAccountPage.ui-page, #preferences, #authorsPage{
     background-color: transparent !important;
     background: url(../img/blurred-background-1.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
@@ -258,3 +258,196 @@ body {
     outline: none;
       border: none;
   }
+
+  /* The side navigation menu */
+.sidenav {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #111; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font: 20px 'ABeeZee', Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.container {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.bar1, .bar2, .bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: #333;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+/*checkbox*/
+#clothesCategories .check input {
+  display: none;
+}
+
+#clothesCategories .check input:checked + label .box {
+  -webkit-animation: animOn 0.6s 1 forwards;
+          animation: animOn 0.6s 1 forwards;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+#clothesCategories .check input:checked + label .box i {
+  -webkit-transform: translate(-50%, -50%) scale(1);
+          transform: translate(-50%, -50%) scale(1);
+  -webkit-transition-duration: 250ms;
+          transition-duration: 250ms;
+  opacity: 1;
+}
+
+#clothesCategories .check label {
+  min-width: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  -webkit-box-align: left;
+      -ms-flex-align: left;
+          align-items: left;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  min-height: 40px;
+  cursor: pointer;
+  text-decoration: none;
+  font: 20px 'ABeeZee', Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+}
+
+#clothesCategories .check label .box {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  -webkit-transition: background 300ms ease;
+  transition: background 300ms ease;
+}
+
+#clothesCategories .check label .box:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+#clothesCategories .check label .box i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 20px;
+  display: inline-block;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  -webkit-transition-delay: 200ms;
+          transition-delay: 200ms;
+  -webkit-transform: translate(-50%, -50%) scale(6);
+          transform: translate(-50%, -50%) scale(6);
+}
+
+@-webkit-keyframes animOn {
+  40% {
+    height: 20px;
+    width: 45px;
+  }
+  60% {
+    height: 40px;
+    width: 20px;
+  }
+  75% {
+    height: 15px;
+    width: 40px;
+  }
+  100% {
+    height: 30px;
+    width: 30px;
+  }
+}
+
+@keyframes animOn {
+  40% {
+    height: 20px;
+    width: 45px;
+  }
+  60% {
+    height: 40px;
+    width: 20px;
+  }
+  75% {
+    height: 15px;
+    width: 40px;
+  }
+  100% {
+    height: 30px;
+    width: 30px;
+  }
+}
+
+.author {
+  margin-top: 3vh;
+  padding: 0%;
+  font: 4vh 'ABeeZee', Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  color: #142e3f;
+  text-align: center;
+}
+
+.authorTitle {
+  margin-top: 0%;
+  margin-bottom: 0%;
+  padding-top: 0%;
+  padding-bottom: 0%;
+  font: 11vh 'Dancing Script', Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  color: #142e3f;
+  text-align: center;
+}

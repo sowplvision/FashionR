@@ -5,6 +5,11 @@
 		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 		<script src="js/jquery-2.1.4.min.js"></script>
 		<script src="js/jquery.mobile-1.4.5.min.js"></script>
+		<script src="js/navbar.js"></script>
+		<!--LINKI-->
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+		<!--LINKI-->
 		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="stylesheet" type="text/css" href="css/buttons.css" />
@@ -17,9 +22,27 @@
 	</head>
 	<body onload="init()">
 		
-		<!-- My app main page -->
+		<!-- MAIN PAGE -->
 		<div data-role="page" id="logInPage">
 		  <div data-role="main" class="ui-content">
+			<div id="mySidenav1" class="sidenav">
+				<div class="container closebtn" onclick="closeNav(1)">
+					<div class="bar1"></div>
+					<div class="bar2"></div>
+					<div class="bar3"></div>
+				</div><br><br>
+					<a href="#">Ulubione</a>
+					<a href="#">Przeglądaj oferty</a>
+					<a href="#">Wybierz oferty</a>
+					<a href="#">Preferencje</a>
+					<a href="#">Autorzy</a>
+				</div> 
+				<div class="container" onclick="openNav(1)">
+					<div class="bar1"></div>
+					<div class="bar2"></div>
+					<div class="bar3"></div>
+				</div>
+
 			  <div class="login-box">
 				<div class="firstHeader">
 					<h1>FashionR</h1>
@@ -37,17 +60,55 @@
 			  </div>
 		  </div>
 		</div>
-		
+
+		<!-- LOGGED IN PAGE -->
 		<div data-role="page" id="loggedInPage">
 		  <div data-role="main" class="ui-content">
+				<div id="mySidenav2" class="sidenav">
+						<div class="container closebtn" onclick="closeNav(2)">
+							<div class="bar1"></div>
+							<div class="bar2"></div>
+							<div class="bar3"></div>
+						</div><br><br>
+							<a href="#">Ulubione</a>
+							<a href="#">Przeglądaj oferty</a>
+							<a href="#">Wybierz oferty</a>
+							<a href="#">Preferencje</a>
+							<a href="#">Autorzy</a>
+						</div> 
+						<div class="container" onclick="openNav(2)">
+							<div class="bar1"></div>
+							<div class="bar2"></div>
+							<div class="bar3"></div>
+						</div>
 		    <h1>FashionR</h1>
 			<p>Zostałeś zalogowany</p>
 			<button id="logout" class="btn btn-action">Wyloguj</button>
+			<button class="btn tests" onclick="listOffers()">Pobierz oferty</button>
+     		<div id="offersContainer"></div>
 		  </div>
 		</div>
-		
+
+		<!-- CREATE ACCOUNT PAGE -->
 		 <div data-role="page" id="createAccountPage">
 				<div data-role="main" class="ui-content">
+						<div id="mySidenav3" class="sidenav">
+								<div class="container closebtn" onclick="closeNav(3)">
+									<div class="bar1"></div>
+									<div class="bar2"></div>
+									<div class="bar3"></div>
+								</div><br><br>
+									<a href="#">Ulubione</a>
+									<a href="#">Przeglądaj oferty</a>
+									<a href="#">Wybierz oferty</a>
+									<a href="#">Preferencje</a>
+									<a href="#">Autorzy</a>
+								</div> 
+								<div class="container" onclick="openNav(3)">
+									<div class="bar1"></div>
+									<div class="bar2"></div>
+									<div class="bar3"></div>
+								</div>
 					<div class="login-box">
 						<div class="firstHeader">
 							<h1>FashionR</h1>
@@ -64,9 +125,27 @@
 					</div>
 				</div>
 			</div>
-				
+
+				<!-- PREFERENCES PAGE -->
 			<div data-role="page" id="preferences">
 					<div data-role="main" class="ui-content">
+							<div id="mySidenav4" class="sidenav">
+									<div class="container closebtn" onclick="closeNav(4)">
+										<div class="bar1"></div>
+										<div class="bar2"></div>
+										<div class="bar3"></div>
+									</div><br><br>
+										<a href="#">Ulubione</a>
+										<a href="#">Przeglądaj oferty</a>
+										<a href="#">Wybierz oferty</a>
+										<a href="#">Preferencje</a>
+										<a href="#">Autorzy</a>
+									</div> 
+									<div class="container" onclick="openNav(4)">
+										<div class="bar1"></div>
+										<div class="bar2"></div>
+										<div class="bar3"></div>
+									</div>
 						<div class="login-box">
 							<div class="custom-select">
 									<select id="gender" onchange="listCategories()">
@@ -99,13 +178,33 @@
 				</div>
 			</div>
 
+					<!-- AUTHORS PAGE -->
 					<div data-role="page" id="authorsPage">
 							<div data-role="main" class="ui-content">
-								<h1>Autorzy</h1>
-								<p>Daniel Kucharczyk</p>
-								<p>Wojciech Wisła</p>
-								<p>Anna Żukowska</p>
+									<div id="mySidenav5" class="sidenav">
+											<div class="container closebtn" onclick="closeNav(5)">
+												<div class="bar1"></div>
+												<div class="bar2"></div>
+												<div class="bar3"></div>
+											</div><br><br>
+												<a href="#">Ulubione</a>
+												<a href="#">Przeglądaj oferty</a>
+												<a href="#">Wybierz oferty</a>
+												<a href="#">Preferencje</a>
+												<a href="#">Autorzy</a>
+											</div> 
+											<div class="container" onclick="openNav(5)">
+												<div class="bar1"></div>
+												<div class="bar2"></div>
+												<div class="bar3"></div>
+											</div>
+											<div class="login-box">
+								<h1 class="authorTitle">Autorzy</h1>
+								<p class="author">Daniel Kucharczyk</p>
+								<p class="author">Wojciech Wisła</p>
+								<p class="author">Anna Żukowska</p>
 								<a href="#logInPage" class="ui-btn">Go back to logIn</a>
+							</div>
 							</div>
 					</div>
 	</body>
