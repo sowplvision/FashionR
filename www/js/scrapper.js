@@ -192,9 +192,11 @@ function getHouseOffers(url){
     /**
      * GET offers from House site (url)
      */
+    var json = "";
     $.ajax({
         url:url,
         dataType:"html",
+        async:false,
         success:function (data) {
             var i;
             var parser = new DOMParser();
@@ -227,15 +229,16 @@ function getHouseOffers(url){
             //remove last ',' from string before parsing
             str = str.replace(/.$/,"}");
 
-            var json = JSON.parse(str);
+            json = JSON.parse(str);
 
-            console.log(json);
-            console.log(Object.keys(json).length);
+            //console.log(json);
+            //console.log(Object.keys(json).length);
         },
         error:function (data) {
-
+            console.log(data);
         }
     });
+    return json;
 }
 
 function convertHouseOfferToJSON(offer) {
@@ -263,20 +266,20 @@ function convertHouseOfferToJSON(offer) {
 
     //get price
     temp = offer.getAttribute("data-price");
-    var orginalPrice = "\"orginal_price\":\""+ temp +"\"";
+    var price = "\"price\":\""+ temp +"\"";
 
     temp = offer.querySelector("span[class='priceOld']");
     var specialPrice;
-    var price;
+    var orginalPrice;
     if (temp != null){
-        orginalPrice = "\"orginal_price\":\"" + temp.innerText.replace("PLN","") + "\"";
+        price = "\"price\":\"" + temp.innerText.replace(" PLN","") + "\"";
         temp = offer.querySelector("span[class='priceNew']");
-        specialPrice = "\"special_price\":\"" + temp.innerText + "\"";
-        price = specialPrice.replace("special_", "");
+        specialPrice = "\"special_price\":\"" + temp.innerText.replace(" PLN","") + "\"";
+        orginalPrice = specialPrice.replace("special_", "original_");
     }
     else {
         specialPrice = "\"special_price\": null";
-        price = orginalPrice.replace("orginal_","");
+        orginalPrice = price.replace("price","original_price");
     }
     //console.log(price);
     //console.log(orginalPrice);
@@ -357,9 +360,11 @@ function getCroppOffers(url) {
     /**
      * GET offers from Cropp site (url) as JSON
      */
+    var json = "";
     $.ajax({
         url:url,
         dataType:"html",
+        async:false,
         success:function (data) {
             var i;
             var parser = new DOMParser();
@@ -378,15 +383,16 @@ function getCroppOffers(url) {
             var str = offers[2].innerText;
 
             //Convert offers to JSON format
-            var json = convertCroppOffersToJSON(str);
+            json = convertCroppOffersToJSON(str);
 
-            console.log(json);
-            console.log(Object.keys(json).length);
+            //console.log(json);
+            //console.log(Object.keys(json).length);
         },
         error:function (data) {
-
+            console.log(data);
         }
     });
+    return json;
 }
 
 function convertCroppOffersToJSON(str) {
