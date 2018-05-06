@@ -1,196 +1,208 @@
 <!DOCTYPE html>
-	<head>
-		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-		<script src="js/jquery-2.1.4.min.js"></script>
-		<script src="js/jquery.mobile-1.4.5.min.js"></script>
-		<script src="js/navbar.js"></script>
-		<!--LINKI-->
-		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-		<!--LINKI-->
-		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
-		<link rel="stylesheet" type="text/css" href="css/style.css" />
-		<link rel="stylesheet" type="text/css" href="css/buttons.css" />
-		<!-- <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script> -->
-		<script src="js/firebase.js"></script>
-		<script src="cordova.js"></script>
-		<script src="js/pgb.js"></script>
-		<script src="js/scrapper.js"></script>	
-		<script src="js/firebaseService.js"></script>			
-	</head>
-	<body onload="init()">
-		
-		<!-- MAIN PAGE -->
-		<div data-role="page" id="logInPage">
-		  <div data-role="main" class="ui-content">
-			<div id="mySidenav1" class="sidenav">
-				<div class="container closebtn" onclick="closeNav(1)">
-					<div class="bar1"></div>
-					<div class="bar2"></div>
-					<div class="bar3"></div>
-				</div><br><br>
-					<a href="#">Ulubione</a>
-					<a href="#">Przeglądaj oferty</a>
-					<a href="#">Wybierz oferty</a>
-					<a href="#">Preferencje</a>
-					<a href="#">Autorzy</a>
-				</div> 
-				<div class="container" onclick="openNav(1)">
-					<div class="bar1"></div>
-					<div class="bar2"></div>
-					<div class="bar3"></div>
-				</div>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
 
-			  <div class="login-box">
-				<div class="firstHeader">
-					<h1>FashionR</h1>
-					<p>Zaloguj się</p>
-				</div>
-				<div class="formSignIn">
-					<input type="email" data-role="none" placeholder="Email" id="emailLog"/>
-					<input type="password" data-role="none" placeholder="Hasło" id="passwordLog"/>
-				</div>
-				<a href="#" id="lostPassword" class="ui-btn">Zapomniałeś hasła?</a>
-				<button id="login" data-role="none" class="loginBtn loginBtnFirebase">Zaloguj</button>
-				<button id="facebookLogIn" data-role="none" class="loginBtn loginBtn--facebook">Login with Facebook</button>
-				<button id="googleLogIn" data-role="none" class="loginBtn loginBtn--google">Login with Google</button>
-				<a href="#createAccountPage" data-role="none" class="ui-btn btnRegister">Lub utwórz konto</a>
-			  </div>
-		  </div>
-		</div>
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/navbar.js"></script>
+    <!--LINKI-->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <!--LINKI-->
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/buttons.css"/>
+    <!-- <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script> -->
+    <script src="js/firebase.js"></script>
+    <script src="cordova.js"></script>
+    <script src="js/pgb.js"></script>
+    <script src="js/scrapper.js"></script>
+    <script src="js/firebaseService.js"></script>
+</head>
+<body onload="init()">
 
-		<!-- LOGGED IN PAGE -->
-		<div data-role="page" id="loggedInPage">
-		  <div data-role="main" class="ui-content">
-				<div id="mySidenav2" class="sidenav">
-						<div class="container closebtn" onclick="closeNav(2)">
-							<div class="bar1"></div>
-							<div class="bar2"></div>
-							<div class="bar3"></div>
-						</div><br><br>
-							<a href="#">Ulubione</a>
-							<a href="#">Przeglądaj oferty</a>
-							<a href="#">Wybierz oferty</a>
-							<a href="#">Preferencje</a>
-							<a href="#">Autorzy</a>
-						</div> 
-						<div class="container" onclick="openNav(2)">
-							<div class="bar1"></div>
-							<div class="bar2"></div>
-							<div class="bar3"></div>
-						</div>
-		    <h1>FashionR</h1>
-			<p>Zostałeś zalogowany</p>
-			<button id="logout" class="btn btn-action">Wyloguj</button>
-			<button class="btn tests" onclick="listOffers()">Pobierz oferty</button>
-     		<div id="offersContainer"></div>
-		  </div>
-		</div>
+<!-- MAIN PAGE -->
+<div data-role="page" id="logInPage">
+    <div data-role="main" class="ui-content">
+        <div id="mySidenav1" class="sidenav">
+            <div class="container closebtn" onclick="closeNav(1)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+            <br><br>
+            <a href="#">Ulubione</a>
+            <a href="#">Przeglądaj oferty</a>
+            <a href="#">Wybierz oferty</a>
+            <a href="#">Preferencje</a>
+            <a href="#">Autorzy</a>
+        </div>
+        <div class="container" onclick="openNav(1)">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
 
-		<!-- CREATE ACCOUNT PAGE -->
-		 <div data-role="page" id="createAccountPage">
-				<div data-role="main" class="ui-content">
-						<div id="mySidenav3" class="sidenav">
-								<div class="container closebtn" onclick="closeNav(3)">
-									<div class="bar1"></div>
-									<div class="bar2"></div>
-									<div class="bar3"></div>
-								</div><br><br>
-									<a href="#">Ulubione</a>
-									<a href="#">Przeglądaj oferty</a>
-									<a href="#">Wybierz oferty</a>
-									<a href="#">Preferencje</a>
-									<a href="#">Autorzy</a>
-								</div> 
-								<div class="container" onclick="openNav(3)">
-									<div class="bar1"></div>
-									<div class="bar2"></div>
-									<div class="bar3"></div>
-								</div>
-					<div class="login-box">
-						<div class="firstHeader">
-							<h1>FashionR</h1>
-							<p>Zarejestruj się, aby kontynuować</p>
-						</div>
-						<div class="formRegister">
-						<input type="email" data-role="none" placeholder="Email" id="emailReg" required/>
-						<input type="password" data-role="none" placeholder="Hasło" id="passwordReg" required/>
-						<input type="password" data-role="none" placeholder="Powtórz hasło" id="passwordCheck" required/>
-						<button id="register" data-role="none" class="loginBtn loginBtnFirebase">Zarejestruj konto</button>
-						<a href="#logInPage" class="ui-btn">Go back</a>
-						<a href="#preferences" class="ui-btn">Go to next page</a>
-						</div>
-					</div>
-				</div>
-			</div>
+        <div class="login-box">
+            <div class="firstHeader">
+                <h1>FashionR</h1>
+                <p>Zaloguj się</p>
+            </div>
+            <div class="formSignIn">
+                <input type="email" data-role="none" placeholder="Email" id="emailLog"/>
+                <input type="password" data-role="none" placeholder="Hasło" id="passwordLog"/>
+            </div>
+            <a href="#" id="lostPassword" class="ui-btn">Zapomniałeś hasła?</a>
+            <button id="login" data-role="none" class="loginBtn loginBtnFirebase">Zaloguj</button>
+            <button id="facebookLogIn" data-role="none" class="loginBtn loginBtn--facebook">Login with Facebook</button>
+            <button id="googleLogIn" data-role="none" class="loginBtn loginBtn--google">Login with Google</button>
+            <a href="#createAccountPage" data-role="none" class="ui-btn btnRegister">Lub utwórz konto</a>
+        </div>
+    </div>
+</div>
 
-				<!-- PREFERENCES PAGE -->
-			<div data-role="page" id="preferences">
-					<div data-role="main" class="ui-content">
-							<div id="mySidenav4" class="sidenav">
-									<div class="container closebtn" onclick="closeNav(4)">
-										<div class="bar1"></div>
-										<div class="bar2"></div>
-										<div class="bar3"></div>
-									</div><br><br>
-										<a href="#">Ulubione</a>
-										<a href="#">Przeglądaj oferty</a>
-										<a href="#">Wybierz oferty</a>
-										<a href="#">Preferencje</a>
-										<a href="#">Autorzy</a>
-									</div> 
-									<div class="container" onclick="openNav(4)">
-										<div class="bar1"></div>
-										<div class="bar2"></div>
-										<div class="bar3"></div>
-									</div>
-						<div class="login-box">
-							<div class="custom-select">
-								<select id="gender" onchange="listCategories()">
-									<option value="0">Wybierz płeć:</option>
-									<option value="1">Kobieta</option>
-									<option value="2">Mężczyzna</option>
-								</select>
-							</div>
-							<div id="clothesCategories"></div>
-							<button id="submit" data-role="none" class="loginBtn loginBtnFirebase">Zapisz preferencje</button>
-							<a href="#logInPage" class="ui-btn">Go back</a>
-							<a href="#authorsPage" class="ui-btn">Go to next page</a>
-						</div>
-					</div>
-				</div>
-			</div>
+<!-- LOGGED IN PAGE -->
+<div data-role="page" id="loggedInPage">
+    <div data-role="main" class="ui-content">
+        <div id="mySidenav2" class="sidenav">
+            <div class="container closebtn" onclick="closeNav(2)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+            <br><br>
+            <a href="#">Ulubione</a>
+            <a href="#">Przeglądaj oferty</a>
+            <a href="#">Wybierz oferty</a>
+            <a href="#">Preferencje</a>
+            <a href="#">Autorzy</a>
+        </div>
+        <div class="container" onclick="openNav(2)">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+        <h1>FashionR</h1>
+        <p>Zostałeś zalogowany</p>
+        <button id="logout" class="btn btn-action">Wyloguj</button>
+        <button class="btn tests" onclick="listOffers()">Pobierz oferty</button>
+        <div id="offersContainer"></div>
+    </div>
+</div>
 
-					<!-- AUTHORS PAGE -->
-					<div data-role="page" id="authorsPage">
-							<div data-role="main" class="ui-content">
-									<div id="mySidenav5" class="sidenav">
-											<div class="container closebtn" onclick="closeNav(5)">
-												<div class="bar1"></div>
-												<div class="bar2"></div>
-												<div class="bar3"></div>
-											</div><br><br>
-												<a href="#">Ulubione</a>
-												<a href="#">Przeglądaj oferty</a>
-												<a href="#">Wybierz oferty</a>
-												<a href="#">Preferencje</a>
-												<a href="#">Autorzy</a>
-											</div> 
-											<div class="container" onclick="openNav(5)">
-												<div class="bar1"></div>
-												<div class="bar2"></div>
-												<div class="bar3"></div>
-											</div>
-											<div class="login-box">
-								<h1 class="authorTitle">Autorzy</h1>
-								<p class="author">Daniel Kucharczyk</p>
-								<p class="author">Wojciech Wisła</p>
-								<p class="author">Anna Żukowska</p>
-								<a href="#logInPage" class="ui-btn">Go back to logIn</a>
-							</div>
-							</div>
-					</div>
-	</body>
+<!-- CREATE ACCOUNT PAGE -->
+<div data-role="page" id="createAccountPage">
+    <div data-role="main" class="ui-content">
+        <div id="mySidenav3" class="sidenav">
+            <div class="container closebtn" onclick="closeNav(3)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+            <br><br>
+            <a href="#">Ulubione</a>
+            <a href="#">Przeglądaj oferty</a>
+            <a href="#">Wybierz oferty</a>
+            <a href="#">Preferencje</a>
+            <a href="#">Autorzy</a>
+        </div>
+        <div class="container" onclick="openNav(3)">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+        <div class="login-box">
+            <div class="firstHeader">
+                <h1>FashionR</h1>
+                <p>Zarejestruj się, aby kontynuować</p>
+            </div>
+            <div class="formRegister">
+                <input type="email" data-role="none" placeholder="Email" id="emailReg" required/>
+                <input type="password" data-role="none" placeholder="Hasło" id="passwordReg" required/>
+                <input type="password" data-role="none" placeholder="Powtórz hasło" id="passwordCheck" required/>
+                <button id="register" data-role="none" class="loginBtn loginBtnFirebase">Zarejestruj konto</button>
+                <a href="#logInPage" class="ui-btn">Go back</a>
+                <a href="#preferences" class="ui-btn">Go to next page</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PREFERENCES PAGE -->
+<div data-role="page" id="preferences">
+    <div data-role="main" class="ui-content">
+        <div id="mySidenav4" class="sidenav">
+            <div class="container closebtn" onclick="closeNav(4)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+            <br><br>
+            <a href="#">Ulubione</a>
+            <a href="#">Przeglądaj oferty</a>
+            <a href="#">Wybierz oferty</a>
+            <a href="#">Preferencje</a>
+            <a href="#">Autorzy</a>
+        </div>
+        <div class="container" onclick="openNav(4)">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+        <div class="login-box">
+            <div class="custom-select">
+                <select id="gender" onchange="listCategories()">
+                    <option value="0">Wybierz płeć:</option>
+                    <option value="1">Kobieta</option>
+                    <option value="2">Mężczyzna</option>
+                </select>
+            </div>
+            <div id="clothesCategories"></div>
+            <button id="submit" data-role="none" class="loginBtn loginBtnFirebase">Zapisz preferencje</button>
+            <a href="#logInPage" class="ui-btn">Go back</a>
+            <a href="#authorsPage" class="ui-btn">Go to next page</a>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- AUTHORS PAGE -->
+<div data-role="page" id="authorsPage">
+    <div data-role="main" class="ui-content">
+        <div id="mySidenav5" class="sidenav">
+            <div class="container closebtn" onclick="closeNav(5)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+            <br><br>
+            <a href="#">Ulubione</a>
+            <a href="#">Przeglądaj oferty</a>
+            <a href="#">Wybierz oferty</a>
+            <a href="#">Preferencje</a>
+            <a href="#">Autorzy</a>
+        </div>
+        <div class="container" onclick="openNav(5)">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+        <div class="login-box">
+            <h1 class="authorTitle">Autorzy</h1>
+            <p class="author">Daniel Kucharczyk</p>
+            <p class="author">Wojciech Wisła</p>
+            <p class="author">Anna Żukowska</p>
+            <a href="#logInPage" class="ui-btn">Go back to logIn</a>
+        </div>
+    </div>
+</div>
+</body>
 </html>

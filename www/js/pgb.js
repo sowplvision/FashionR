@@ -72,7 +72,10 @@ function listOffers() {
 
                     html += "<div class='offer'>";
                     html += "<div class='offerImg'><img src=\"" + img + "\"/></div>";
-                    html += "<div class='offerFooter'><p><s>" + oldPrice.replace(",",".") + "</s>" + price.replace(",",".") + "</p></div>";
+                    html += "<div class='offerFooter'>";
+                    html += "<img src='img/house.png'/>";
+                    html += "<p><s>" + oldPrice.replace(",",".") + "</s>" + price.replace(",",".") + "</p>";
+                    html += "</div>";
                     html += "</div>";
                 }
             }
@@ -100,7 +103,10 @@ function listOffers() {
 
                     html += "<div class='offer'>";
                     html += "<div class='offerImg'><img src=\"" + img + "\"/></div>";
-                    html += "<div class='offerFooter'><p><s>" + oldPrice.replace(",",".") + "</s>" + price + "</p></div>";
+                    html += "<div class='offerFooter'>";
+                    html += "<img src='img/cropp.png'/>";
+                    html += "<p><s>" + oldPrice.replace(",",".") + "</s>" + price + "</p>";
+                    html += "</div>";
                     html += "</div>";
                 }
             }
