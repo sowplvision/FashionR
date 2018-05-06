@@ -1,6 +1,9 @@
 function init() {
     document.addEventListener("deviceready",onDeviceReady, false);
     scrapp();
+    $( document ).on( "pageinit", "#loggedInPage", function() {
+        listOffers();
+    });
 }
 
 function onDeviceReady() {
@@ -70,7 +73,7 @@ function listOffers() {
                     }
                     var price = offers[offer]["original_price"];
 
-                    html += "<div class='offer'>";
+                    html += "<div class='offer' onclick='changePage()'>";
                     html += "<div class='offerImg'><img src=\"" + img + "\"/></div>";
                     html += "<div class='offerFooter'>";
                     html += "<img src='img/house.png'/>";
@@ -101,7 +104,7 @@ function listOffers() {
                     }
                     var price = offers[offer]["original_price"];
 
-                    html += "<div class='offer'>";
+                    html += "<div class='offer' onclick='changePage()'>";
                     html += "<div class='offerImg'><img src=\"" + img + "\"/></div>";
                     html += "<div class='offerFooter'>";
                     html += "<img src='img/cropp.png'/>";
@@ -114,4 +117,8 @@ function listOffers() {
     }
     console.log("DONE");
     document.getElementById("offersContainer").innerHTML = html;
+}
+
+function changePage() {
+    $.mobile.changePage("#offerPage");
 }
