@@ -93,7 +93,7 @@ body {
 .firstHeader p{
     margin-top: 3vh;
     padding: 0%;
-    font: 4vh 'ABeeZee', Arial, Helvetica, sans-serif;
+    font: 4vh 'Advent Pro', Arial, Helvetica, sans-serif;
     font-weight: 400;
     color: #142e3f;
 }
@@ -106,7 +106,7 @@ body {
 .login-box .formSignIn input[type="email"], input[type="password"],
 .login-box .formRegister input[type="email"], input[type="password"]
 {
-    font: 3vh 'ABeeZee', Arial, Helvetica, sans-serif;
+    font: 3vh 'Advent Pro', Arial, Helvetica, sans-serif;
     font-weight: lighter;
     border-bottom: 1px solid #fff;
     background-color: transparent;
@@ -182,7 +182,7 @@ body {
     color: #142e3f !important;
     text-align: center !important;
     padding: 4px 6px 0px 0px !important;
-    font: 18px 'ABeeZee', Arial, Helvetica, sans-serif !important;
+    font: 18px 'Advent Pro', Arial, Helvetica, sans-serif !important;
     background-image: linear-gradient(#fdbe80, #efa45e);
     /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;*/
     text-shadow: 0 -1px 0 #ef9a4a;
@@ -236,7 +236,7 @@ body {
     background-color: Transparent !important;
     color: white !important;
     background-repeat:no-repeat;
-    font: 20px 'ABeeZee', Arial, Helvetica, sans-serif;
+    font: 20px 'Advent Pro', Arial, Helvetica, sans-serif;
     font-weight: lighter;
     text-decoration: underline !important;
     opacity: 0.8;
@@ -277,7 +277,7 @@ body {
 .sidenav a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
-  font: 20px 'ABeeZee', Arial, Helvetica, sans-serif;
+  font: 20px 'Advent Pro', Arial, Helvetica, sans-serif;
   font-weight: lighter;
   color: #818181;
   display: block;
@@ -360,7 +360,7 @@ body {
   min-height: 40px;
   cursor: pointer;
   text-decoration: none;
-  font: 20px 'ABeeZee', Arial, Helvetica, sans-serif;
+  font: 20px 'Advent Pro', Arial, Helvetica, sans-serif;
   font-weight: lighter;
 }
 
@@ -435,7 +435,7 @@ body {
 .author {
   margin-top: 3vh;
   padding: 0%;
-  font: 4vh 'ABeeZee', Arial, Helvetica, sans-serif;
+  font: 20px 'Advent Pro', Arial, Helvetica, sans-serif;
   font-weight: 400;
   color: #142e3f;
   text-align: center;
