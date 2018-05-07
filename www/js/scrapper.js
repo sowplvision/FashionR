@@ -30,9 +30,6 @@ function scrapp(){
         womanCategories = convertWomanCategoriesTOJSON();
         manCategories = convertManCategoriesTOJSON();
     });
-
-    //getHouseOffers("http://www.house.pl/pl/pl/ona/kolekcja/bluzki-koszule");
-    //getCroppOffers("https://www.cropp.com/pl/pl/chlopak/kolekcja/bluzy");
 }
 
 function scrappHouseClothing(){
@@ -50,7 +47,7 @@ function scrappHouseClothing(){
 
             //Get Woman categories
             //console.log("\r\nWOMAN\r\n");
-            var womanCategories = doc.querySelectorAll("ul[id='womanCategory'] li[class='default'] a");
+            var womanCategories = doc.querySelectorAll("ul[class*='menuOna'] li ul li[class='category'] a");
             for (i = 0; i < womanCategories.length; i++){
                 if (!womanCategories[i].getAttribute("href").includes("sprawdz-to")) {
                     //console.log(womanCategories[i].innerText + " " + womanCategories[i].getAttribute("href"));
@@ -60,8 +57,7 @@ function scrappHouseClothing(){
             }
 
             //Get Man categories
-            //console.log("\r\nMAN\r\n");
-            var manCategories = doc.querySelectorAll("ul[id='manCategory'] li[class='default'] a");
+            var manCategories = doc.querySelectorAll("ul[class*='menuOn'] li ul li[class='category'] a");
             for (i = 0; i < manCategories.length; i++){
                 if (!manCategories[i].getAttribute("href").includes("sprawdz-to")) {
                     //console.log(manCategories[i].innerText + " " + manCategories[i].getAttribute("href"));
@@ -94,7 +90,7 @@ function scrappCropp(){
 
             //Get Woman categories
             //console.log("\r\nWOMAN\r\n");
-            var womanCategories = doc.querySelectorAll("ul[class='level1'] li[class*='nav-1-3'] a");
+            var womanCategories = doc.querySelectorAll("ul[class='level0'] li[class*='nav-1-2'] a");
             for (i = 0; i < womanCategories.length; i++){
                 //console.log(womanCategories[i].innerText + " " +  womanCategories[i].getAttribute("href"));
                 //Add category to array
@@ -103,7 +99,7 @@ function scrappCropp(){
 
             //Get Man categories
             //console.log("\r\nMAN\r\n");
-            var manCategories = doc.querySelectorAll("ul[class='level1'] li[class*='nav-2-3'] a");
+            var manCategories = doc.querySelectorAll("ul[class='level0'] li[class*='nav-2-2'] a");
             for (i = 0; i < manCategories.length; i++){
                 //console.log(manCategories[i].innerText + " " +  manCategories[i].getAttribute("href"));
                 //Add category to array
