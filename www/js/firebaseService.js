@@ -34,6 +34,10 @@
 				});
 			
 		});
+
+		$('a.logout').click(function() {
+			firebase.auth().signOut();
+		});
 	  
 		btnRegis.addEventListener('click', function() {
 
@@ -89,9 +93,5 @@
 			}else{
 				$.mobile.changePage('#logInPage');
 			}
-		});
-	  
-		logout.addEventListener('click', function(){
-			firebase.auth().signOut();
 		});
 	  });

@@ -51,34 +51,6 @@
     </div>
 </div>
 
-<!-- LOGGED IN PAGE -->
-<div data-role="page" id="loggedInPage">
-    <div data-role="main" class="ui-content">
-        <div id="mySidenav2" class="sidenav">
-            <div class="container closebtn" onclick="closeNav(2)">
-                <div class="bar1"></div>
-                <div class="bar2"></div>
-                <div class="bar3"></div>
-            </div>
-            <br><br>
-            <a href="#">Ulubione</a>
-            <a href="#">Przeglądaj oferty</a>
-            <a href="#">Wybierz oferty</a>
-            <a href="#">Preferencje</a>
-            <a href="#">Autorzy</a>
-            <a href="#" id="logout">Wyloguj</a>
-        </div>
-        <div class="container" onclick="openNav(2)">
-            <div class="bar1"></div>
-            <div class="bar2"></div>
-            <div class="bar3"></div>
-        </div>
-        <h1>FashionR</h1>
-        <p>Zostałeś zalogowany</p>
-        <div id="offersContainer"></div>
-    </div>
-</div>
-
 <!-- CREATE ACCOUNT PAGE -->
 <div data-role="page" id="createAccountPage">
     <div data-role="main" class="ui-content">
@@ -99,6 +71,84 @@
     </div>
 </div>
 
+<!-- LOGGED IN PAGE -->
+<div data-role="page" id="loggedInPage">
+    <div data-role="main" class="ui-content">
+        <div id="mySidenav1" class="sidenav">
+            <div class="container closebtn" onclick="closeNav(1)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+            <br><br>
+            <a href="#favouritesPage" class="favourites">Ulubione</a>
+            <a href="#loggedInPage" class="searchOffers">Przeglądaj oferty</a>
+            <a href="#filtersPage" class="filters">Wybierz oferty</a>
+            <a href="#preferences" class="preferences">Preferencje</a>
+            <a href="#authorsPage">Autorzy</a>
+            <a href="#" class="logout">Wyloguj</a>
+        </div>
+        <div class="container" onclick="openNav(1)">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+        <h1>FashionR</h1>
+        <p>Zostałeś zalogowany</p>
+        <div id="offersContainer"></div>
+    </div>
+</div>
+
+<!-- FAVOURITES PAGE -->
+<div data-role="page" id="favouritesPage">
+    <div data-role="main" class="ui-content">
+        <div id="mySidenav2" class="sidenav">
+            <div class="container closebtn" onclick="closeNav(2)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+            <br><br>
+            <a href="#favouritesPage" class="favourites">Ulubione</a>
+            <a href="#loggedInPage" class="searchOffers">Przeglądaj oferty</a>
+            <a href="#filtersPage" class="filters">Wybierz oferty</a>
+            <a href="#preferences" class="preferences">Preferencje</a>
+            <a href="#authorsPage">Autorzy</a>
+            <a href="#" class="logout">Wyloguj</a>
+        </div>
+        <div class="container" onclick="openNav(2)">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+    </div>
+</div>
+
+<!-- FILTERS PAGE -->
+<div data-role="page" id="filtersPage">
+    <div data-role="main" class="ui-content">
+        <div id="mySidenav3" class="sidenav">
+            <div class="container closebtn" onclick="closeNav(3)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+            <br><br>
+            <a href="#favouritesPage" class="favourites">Ulubione</a>
+            <a href="#loggedInPage" class="searchOffers">Przeglądaj oferty</a>
+            <a href="#filtersPage" class="filters">Wybierz oferty</a>
+            <a href="#preferences" class="preferences">Preferencje</a>
+            <a href="#authorsPage">Autorzy</a>
+            <a href="#" class="logout">Wyloguj</a>
+        </div>
+        <div class="container" onclick="openNav(3)">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+    </div>
+</div>
+
 <!-- PREFERENCES PAGE -->
 <div data-role="page" id="preferences">
     <div data-role="main" class="ui-content">
@@ -109,11 +159,12 @@
                 <div class="bar3"></div>
             </div>
             <br><br>
-            <a href="#">Ulubione</a>
-            <a href="#">Przeglądaj oferty</a>
-            <a href="#">Wybierz oferty</a>
-            <a href="#">Preferencje</a>
-            <a href="#">Autorzy</a>
+            <a href="#favouritesPage" class="favourites">Ulubione</a>
+            <a href="#loggedInPage" class="searchOffers">Przeglądaj oferty</a>
+            <a href="#filtersPage" class="filters">Wybierz oferty</a>
+            <a href="#preferences" class="preferences">Preferencje</a>
+            <a href="#authorsPage">Autorzy</a>
+            <a href="#" class="logout">Wyloguj</a>
         </div>
         <div class="container" onclick="openNav(4)">
             <div class="bar1"></div>
@@ -135,7 +186,6 @@
         </div>
     </div>
 </div>
-</div>
 
 <!-- AUTHORS PAGE -->
 <div data-role="page" id="authorsPage">
@@ -147,11 +197,12 @@
                 <div class="bar3"></div>
             </div>
             <br><br>
-            <a href="#">Ulubione</a>
-            <a href="#">Przeglądaj oferty</a>
-            <a href="#">Wybierz oferty</a>
-            <a href="#">Preferencje</a>
-            <a href="#">Autorzy</a>
+            <a href="#favouritesPage" class="favourites">Ulubione</a>
+            <a href="#loggedInPage" class="searchOffers">Przeglądaj oferty</a>
+            <a href="#filtersPage" class="filters">Wybierz oferty</a>
+            <a href="#preferences" class="preferences">Preferencje</a>
+            <a href="#authorsPage">Autorzy</a>
+            <a href="#" class="logout">Wyloguj</a>
         </div>
         <div class="container" onclick="openNav(5)">
             <div class="bar1"></div>
@@ -178,11 +229,12 @@
                 <div class="bar3"></div>
             </div>
             <br><br>
-            <a href="#">Ulubione</a>
-            <a href="#">Przeglądaj oferty</a>
-            <a href="#">Wybierz oferty</a>
-            <a href="#">Preferencje</a>
-            <a href="#">Autorzy</a>
+            <a href="#favouritesPage" class="favourites">Ulubione</a>
+            <a href="#loggedInPage" class="searchOffers">Przeglądaj oferty</a>
+            <a href="#filtersPage" class="filters">Wybierz oferty</a>
+            <a href="#preferences" class="preferences">Preferencje</a>
+            <a href="#authorsPage">Autorzy</a>
+            <a href="#" class="logout">Wyloguj</a>
         </div>
         <div class="container" onclick="openNav(6)">
             <div class="bar1"></div>
