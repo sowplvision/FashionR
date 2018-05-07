@@ -1,13 +1,10 @@
 function init() {
-    document.addEventListener("deviceready",onDeviceReady, false);
-    scrapp();
-    $( document ).on( "pageinit", "#loggedInPage", function() {
+    $(document).ready(function () {
+        scrapp();
+    });
+    $( document ).on( "pageshow", "#loggedInPage", function() {
         listOffers();
     });
-}
-
-function onDeviceReady() {
-	navigator.notification.beep(2);
 }
 
 function listCategories() {

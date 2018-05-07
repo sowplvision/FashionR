@@ -47,7 +47,7 @@ function scrappHouseClothing(){
 
             //Get Woman categories
             //console.log("\r\nWOMAN\r\n");
-            var womanCategories = doc.querySelectorAll("ul[class*='menuOna'] li ul li[class='category'] a");
+            var womanCategories = doc.querySelectorAll("ul[class$='menuOna'] li ul li[class='category'] a");
             for (i = 0; i < womanCategories.length; i++){
                 if (!womanCategories[i].getAttribute("href").includes("sprawdz-to")) {
                     //console.log(womanCategories[i].innerText + " " + womanCategories[i].getAttribute("href"));
@@ -57,7 +57,7 @@ function scrappHouseClothing(){
             }
 
             //Get Man categories
-            var manCategories = doc.querySelectorAll("ul[class*='menuOn'] li ul li[class='category'] a");
+            var manCategories = doc.querySelectorAll("ul[class$='menuOn'] li ul li[class='category'] a");
             for (i = 0; i < manCategories.length; i++){
                 if (!manCategories[i].getAttribute("href").includes("sprawdz-to")) {
                     //console.log(manCategories[i].innerText + " " + manCategories[i].getAttribute("href"));

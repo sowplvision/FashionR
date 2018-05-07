@@ -33,25 +33,6 @@
 <!-- MAIN PAGE -->
 <div data-role="page" id="logInPage">
     <div data-role="main" class="ui-content">
-        <div id="mySidenav1" class="sidenav">
-            <div class="container closebtn" onclick="closeNav(1)">
-                <div class="bar1"></div>
-                <div class="bar2"></div>
-                <div class="bar3"></div>
-            </div>
-            <br><br>
-            <a href="#">Ulubione</a>
-            <a href="#">Przeglądaj oferty</a>
-            <a href="#">Wybierz oferty</a>
-            <a href="#">Preferencje</a>
-            <a href="#">Autorzy</a>
-        </div>
-        <div class="container" onclick="openNav(1)">
-            <div class="bar1"></div>
-            <div class="bar2"></div>
-            <div class="bar3"></div>
-        </div>
-
         <div class="login-box">
             <div class="firstHeader">
                 <h1>FashionR</h1>
@@ -85,6 +66,7 @@
             <a href="#">Wybierz oferty</a>
             <a href="#">Preferencje</a>
             <a href="#">Autorzy</a>
+            <a href="#" id="logout">Wyloguj</a>
         </div>
         <div class="container" onclick="openNav(2)">
             <div class="bar1"></div>
@@ -93,8 +75,6 @@
         </div>
         <h1>FashionR</h1>
         <p>Zostałeś zalogowany</p>
-        <button id="logout" class="btn btn-action">Wyloguj</button>
-        <button class="btn tests" onclick="listOffers()">Pobierz oferty</button>
         <div id="offersContainer"></div>
     </div>
 </div>
@@ -102,24 +82,6 @@
 <!-- CREATE ACCOUNT PAGE -->
 <div data-role="page" id="createAccountPage">
     <div data-role="main" class="ui-content">
-        <div id="mySidenav3" class="sidenav">
-            <div class="container closebtn" onclick="closeNav(3)">
-                <div class="bar1"></div>
-                <div class="bar2"></div>
-                <div class="bar3"></div>
-            </div>
-            <br><br>
-            <a href="#">Ulubione</a>
-            <a href="#">Przeglądaj oferty</a>
-            <a href="#">Wybierz oferty</a>
-            <a href="#">Preferencje</a>
-            <a href="#">Autorzy</a>
-        </div>
-        <div class="container" onclick="openNav(3)">
-            <div class="bar1"></div>
-            <div class="bar2"></div>
-            <div class="bar3"></div>
-        </div>
         <div class="login-box">
             <div class="firstHeader">
                 <h1>FashionR</h1>
@@ -227,8 +189,7 @@
             <div class="bar2"></div>
             <div class="bar3"></div>
         </div>
-        <h1>FashionR</h1>
-        <p>Oferta</p>
+        <div id="offer"></div>
     </div>
 </div>
 </body>
