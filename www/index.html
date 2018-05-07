@@ -93,8 +93,10 @@
             <div class="bar2"></div>
             <div class="bar3"></div>
         </div>
-        <h1>FashionR</h1>
-        <p>Zostałeś zalogowany</p>
+        <div class="topBar">
+            <h1>FashionR</h1>
+            <p>Zostałeś zalogowany</p>
+        </div>
         <div id="offersContainer"></div>
     </div>
 </div>
@@ -173,7 +175,7 @@
         </div>
         <div class="login-box">
             <div class="custom-select">
-                <select id="gender" onchange="listCategories()">
+                <select id="gender" data-native-menu='false' data-overlay-theme="b" data-theme="b" onchange="listCategories()">
                     <option value="0">Wybierz płeć:</option>
                     <option value="1">Kobieta</option>
                     <option value="2">Mężczyzna</option>

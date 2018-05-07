@@ -181,6 +181,7 @@ body {
     height: 34px !important;
     color: #142e3f !important;
     text-align: center !important;
+    padding: 0px 6px 0px 0px !important;
     font-size: 18px !important;
     background-image: linear-gradient(#fdbe80, #efa45e);
     /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;*/
@@ -236,7 +237,7 @@ body {
     color: white !important;
     background-repeat:no-repeat;
     font-size: 20px !important;
-    font-weight: lighter;
+    font-weight: lighter !important;
     text-decoration: underline !important;
     opacity: 0.8;
     border: none;
@@ -262,13 +263,13 @@ body {
 .sidenav {
   height: 100%; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
-  position: fixed; /* Stay in place */
+  position: fixed !important; /* Stay in place */
   z-index: 1; /* Stay on top */
   top: 0; /* Stay at the top */
-  left: 0;
+  left: 0 !important;
   background-color: #111; /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
+  padding-top: 60px !important; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }
 
@@ -312,6 +313,7 @@ body {
 .container {
   display: inline-block;
   cursor: pointer;
+  left: 0 !important;
 }
 
 .bar1, .bar2, .bar3 {
@@ -359,7 +361,8 @@ body {
   min-height: 40px;
   cursor: pointer;
   text-decoration: none;
-  font: 20px 'Advent Pro', Arial, Helvetica, sans-serif;
+  text-shadow: -0.4px 0 #BDB098, 0 0.4px #BDB098, 0.4px 0 #BDB098, 0 -0.4px #BDB098;
+  font-size: 20px;
   font-weight: lighter;
 }
 
@@ -459,7 +462,7 @@ body {
     display: inline-block;
     background-color: #e8c995;
     margin-left: 2vw;
-    margin-top: 2vh;
+    margin-top: 8vh;
     border-radius: 15px;
     width: 43vw;
     height: auto;
@@ -497,4 +500,24 @@ body {
     position: absolute;
     left: 1vw;
     bottom: 0.6vh;
+}
+
+.topBar {
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+    height: 7vh;
+    text-align: center;
+    margin-bottom: 7vh;
+    z-index: 1;
+}
+
+.topBar h1 {
+    margin-top: 0%;
+    margin-bottom: 0%;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    font: 10vh 'Dancing Script', Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    color: #142e3f;
 }
