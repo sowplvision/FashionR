@@ -407,3 +407,48 @@ function convertCroppOffersToJSON(str) {
 
     return json;
 }
+
+function getHouseSingleOffer(url) {
+    /**
+     * GET offer from House
+     */
+    var json = "";
+    $.ajax({
+        url:url,
+        dataType:"html",
+        async:false,
+        success:function (data) {
+            var parser = new DOMParser();
+            var doc = parser.parseFromString(data, "text/html");
+
+            console.log(data);
+
+        },
+        error:function (data) {
+            console.log(data);
+        }
+    });
+    return json;
+}
+
+function getCroppSingleOffer(url) {
+    /**
+     * GET offer from Cropp
+     */
+    var json = "";
+    $.ajax({
+        url:url,
+        dataType:"html",
+        async:false,
+        success:function (data) {
+            var parser = new DOMParser();
+            var doc = parser.parseFromString(data, "text/html");
+
+            console.log(data);
+        },
+        error:function (data) {
+            console.log(data);
+        }
+    });
+    return json;
+}

@@ -1,9 +1,22 @@
 function init() {
     $(document).ready(function () {
-        scrapp();
+        $.when(scrapp()).done(function () {
+            $( document ).on("pageshow", "#loggedInPage", function() {
+                listOffers();
+            });
+        });
     });
-    $( document ).on( "pageshow", "#loggedInPage", function() {
-        listOffers();
+    $(document).on("pageshow", "#offerPage", function () {
+        var url = localStorage.url;
+
+        if (url.includes("house.pl")){
+            console.log("HOUSE");
+            getHouseSingleOffer(url);
+        }
+        else if(url.includes("cropp.pl")){
+            console.log("CROPP");
+            getCroppSingleOffer(url);
+        }
     });
 }
 
@@ -33,7 +46,7 @@ function listOffers() {
     var i;
     var e = document.getElementById("gender");
     var value = e.options[e.selectedIndex].value;
-    value = '2';
+    value = '1';
     var categories;
     var html = "";
     if (value==='1'){
@@ -70,7 +83,9 @@ function listOffers() {
                     }
                     var price = offers[offer]["original_price"];
 
-                    html += "<div class='offer' onclick='changePage()'>";
+                    var url = offers[offer]["url"];
+
+                    html += "<div class='offer' onclick='changePage(\"" + url + "\")'>";
                     html += "<div class='offerImg'><img src=\"" + img + "\"/></div>";
                     html += "<div class='offerFooter'>";
                     html += "<img src='img/house.png'/>";
@@ -101,7 +116,9 @@ function listOffers() {
                     }
                     var price = offers[offer]["original_price"];
 
-                    html += "<div class='offer' onclick='changePage()'>";
+                    var url = offers[offer]["url"];
+
+                    html += "<div class='offer' onclick='changePage(\"" + url + "\")'>";
                     html += "<div class='offerImg'><img src=\"" + img + "\"/></div>";
                     html += "<div class='offerFooter'>";
                     html += "<img src='img/cropp.png'/>";
@@ -116,6 +133,9 @@ function listOffers() {
     document.getElementById("offersContainer").innerHTML = html;
 }
 
-function changePage() {
+function changePage(url) {
+    if(typeof(Storage)!=="undefined") {
+        localStorage.url=url;
+    }
     $.mobile.changePage("#offerPage");
 }
