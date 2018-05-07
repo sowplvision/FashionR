@@ -181,8 +181,7 @@ body {
     height: 34px !important;
     color: #142e3f !important;
     text-align: center !important;
-    padding: 4px 6px 0px 0px !important;
-    font: 18px 'Advent Pro', Arial, Helvetica, sans-serif !important;
+    font-size: 18px !important;
     background-image: linear-gradient(#fdbe80, #efa45e);
     /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;*/
     text-shadow: 0 -1px 0 #ef9a4a;
@@ -236,7 +235,7 @@ body {
     background-color: Transparent !important;
     color: white !important;
     background-repeat:no-repeat;
-    font: 20px 'Advent Pro', Arial, Helvetica, sans-serif;
+    font-size: 20px !important;
     font-weight: lighter;
     text-decoration: underline !important;
     opacity: 0.8;
@@ -435,7 +434,7 @@ body {
 .author {
   margin-top: 3vh;
   padding: 0%;
-  font: 20px 'Advent Pro', Arial, Helvetica, sans-serif;
+  font-size: 30px;
   font-weight: 400;
   color: #142e3f;
   text-align: center;
