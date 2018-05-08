@@ -25,7 +25,7 @@
 		var firstLogin = false;
 		var userID = 'empty';
 		var userInfo = 'empty';
-		var preferencesValue = 'empty';
+		var preferencesValue = null;
 		const textInput = document.getElementById('firebaseText');
 		const btnSubmit = document.getElementById('submit');
 	  
@@ -136,13 +136,13 @@
 				} else {
 					firebase.database().ref('users/' + userID +'/preferences').once('value').then(function(snapshot) {
 						preferencesValue = snapshot.val();
-						console.log(preferencesValue);
+						console.log("Preferences check login: "+preferencesValue);
 					});
 					if (preferencesValue == 'empty') {
 						$.mobile.changePage('#preferences');
+						console.log("Preferences empty "+preferencesValue);
 						
-					} 
-					if (preferencesValue != 'empty') {
+					} else {
 						$.mobile.changePage('#loggedInPage');
 						console.log(firebaseUser.uid);
 					}
