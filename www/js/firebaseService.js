@@ -21,21 +21,38 @@
 		const btnFBLogIn = document.getElementById('facebookLogIn');
 		const btnRegis = document.getElementById('register');
 		const logout = document.getElementById('logout');
+		var database = firebase.database();
+		var firstLogin = false;
+		var userID = 'empty';
+		var userInfo = 'empty';
+		var preferencesValue = 'empty';
+		const textInput = document.getElementById('firebaseText');
+		const btnSubmit = document.getElementById('submit');
 	  
 		btnLogIn.addEventListener('click', function() {
 			const email = emailInput.value;
 			const passwd = passInput.value;
 			const auth = firebase.auth();
-			const promise = auth.signInWithEmailAndPassword(email, passwd);
-			promise.catch(function(error) {
+			const connect = auth.signInWithEmailAndPassword(email, passwd);
+			console.log("LOGOWANIE");
+			console.log(connect);
+			connect.catch(function(error) {
 				var errorCode = error.code;
 				var errorMessage = error.message;
 				alert("Error: "+errorMessage);
 				});
+				/*firebase.onAuth(function(authData) {
+					if (authData) {
+						firebase.child('users').child(authData.uid).set({
+							name: authData.google.displayName
+						});*/
 			
 		});
 
 		$('a.logout').click(function() {
+			userID = 'empty';
+			userInfo = 'empty';
+			setPreferences = false;
 			firebase.auth().signOut();
 		});
 	  
@@ -47,14 +64,20 @@
 
 			if(passwdReg1 === passwdReg2){
 				const auth = firebase.auth();
-				const promise = auth.createUserWithEmailAndPassword(emailReg, passwdReg1);
-				promise.catch(function(error) {
+				const connect = auth.createUserWithEmailAndPassword(emailReg, passwdReg1);
+				
+				connect.catch(function(error) {
 					var errorCode = error.code;
 					var errorMessage = error.message;
 					alert("Error: "+errorMessage);
 					});
-				promise.then(function(){
-					$.mobile.changePage('#loggedInPage');
+					connect.then(function(){
+					userInfo = {
+						name: emailReg,
+						favourites: 'empty',
+						preferences: 'empty'
+					}
+					firstLogin = true;
 				});
 	  
 			}else{
@@ -86,10 +109,44 @@
 				var errorMessage = error.message;
 				alert("Error: "+errorMessage);
 		});
-	});	  
+	});	 
+
+	btnSubmit.addEventListener('click', function() {
+		var pref = textInput.value;
+		if (preferencesValue == 'empty') {
+			preferencesValue = pref;
+		}
+		else {
+			preferencesValue = preferencesValue+", "+pref;
+		}
+		console.log(preferencesValue);
+		var updates = {};
+    	updates['/users/' + userID + '/preferences'] = preferencesValue;
+		firebase.database().ref().update(updates);
+		$.mobile.changePage('#loggedInPage');
+	}); 
+
 		firebase.auth().onAuthStateChanged(firebaseUser => {
 			if(firebaseUser){
-				$.mobile.changePage('#loggedInPage');
+				userID = firebaseUser.uid;
+				if(firstLogin == true) {
+					firebase.database().ref().child('users/'+userID).set(userInfo);
+					firstLogin = false;
+					$.mobile.changePage('#preferences');
+				} else {
+					firebase.database().ref('users/' + userID +'/preferences').once('value').then(function(snapshot) {
+						preferencesValue = snapshot.val();
+						console.log(preferencesValue);
+					});
+					if (preferencesValue == 'empty') {
+						$.mobile.changePage('#preferences');
+						
+					} 
+					if (preferencesValue != 'empty') {
+						$.mobile.changePage('#loggedInPage');
+						console.log(firebaseUser.uid);
+					}
+				}
 			}else{
 				$.mobile.changePage('#logInPage');
 			}
