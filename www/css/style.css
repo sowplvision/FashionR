@@ -51,7 +51,7 @@ body {
     background-color: transparent !important;
 }
 
-#logInPage.ui-page, #createAccountPage.ui-page, #preferences, #authorsPage{
+#logInPage.ui-page, #createAccountPage.ui-page{
     background-color: transparent !important;
     background: url(../img/blurred-background-1.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
@@ -145,7 +145,7 @@ body {
   }
 
 /* Shared */
-.login-box .loginBtn {
+.loginBtn {
     box-sizing: border-box;
     position: relative;
     margin-top: 15px;
@@ -264,9 +264,9 @@ body {
   height: 100%; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed !important; /* Stay in place */
-  z-index: 1; /* Stay on top */
+  z-index: 3 !important; /* Stay on top */
   top: 0; /* Stay at the top */
-  left: 0 !important;
+  left: 0;
   background-color: #111; /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px !important; /* Place content 60px from the top */
@@ -313,7 +313,11 @@ body {
 .container {
   display: inline-block;
   cursor: pointer;
-  left: 0 !important;
+}
+
+.pageTitle {
+  display: inline-block;
+  width: 85vw;
 }
 
 .bar1, .bar2, .bar3 {
@@ -360,6 +364,7 @@ body {
           flex-direction: row;
   min-height: 40px;
   cursor: pointer;
+  color: #142e3f;
   text-decoration: none;
   text-shadow: -0.4px 0 #BDB098, 0 0.4px #BDB098, 0.4px 0 #BDB098, 0 -0.4px #BDB098;
   font-size: 20px;
@@ -462,12 +467,13 @@ body {
     display: inline-block;
     background-color: #e8c995;
     margin-left: 2vw;
-    margin-top: 8vh;
+    margin-top: 13vh;
     border-radius: 15px;
     width: 43vw;
     height: auto;
     position: relative;
     cursor: pointer;
+    z-index: 1 !important;
 }
 
 .offerImg img{
@@ -505,11 +511,14 @@ body {
 .topBar {
     position: fixed; /* Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
+    left: 0;
     width: 100%; /* Full width */
     height: 7vh;
-    text-align: center;
+    z-index: 2 !important;
     margin-bottom: 7vh;
-    z-index: 1;
+    display: inline-block;
+    height: auto;
+    background: linear-gradient(to bottom right, #536D7E, #788C99);
 }
 
 .topBar h1 {
@@ -517,7 +526,28 @@ body {
     margin-bottom: 0%;
     padding-top: 0%;
     padding-bottom: 0%;
-    font: 10vh 'Dancing Script', Arial, Helvetica, sans-serif;
+    text-align: center;
+    font: 7vh 'Dancing Script', Arial, Helvetica, sans-serif;
     font-weight: 700;
-    color: #142e3f;
+    color: #ffffff;
+    text-shadow: -1px 0 #233F51, 0 1.5px #142e3f, 1.5px 0 #233F51, 0 -1.5px #142e3f;
+}
+
+.pageNav {
+  padding-left: 3vw;
+  padding-top: 2vh;
+}
+
+.super-box{
+  padding-top: 10vh !important;
+  width: 90vw;
+  height: 100vh;
+  color: #fff;
+  background-color: inherit;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  box-sizing: border-box;
+  padding: 30px 50px;
 }
