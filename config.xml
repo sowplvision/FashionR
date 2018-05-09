@@ -23,6 +23,12 @@
     <allow-navigation href="*" />
     <allow-intent href="*" />
 	<access origin="*" />
+    <universal-links>
+        <host name="https://du666.app.goo.gl" scheme="https" />
+        <host name="fashionr-dad0c.firebaseapp.com" scheme="https">
+            <path url="/__/auth/callback" />
+        </host>
+    </universal-links>
 
 
 
