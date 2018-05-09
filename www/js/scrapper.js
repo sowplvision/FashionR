@@ -8,6 +8,7 @@ var womanCategories;
 var manCategories;
 
 function getCategories(type) {
+    //return category depending on type
     if(type==='woman'){
         return womanCategories;
     }
@@ -26,6 +27,7 @@ function scrapp(){
     //Tables of colors for House
     colorTable = ["inny","beżowy", "biały", "bordowy", "brązowy", "czarny", "czerwony", "kość słoniowa", "granatowy", "purpurowy", "niebieski", "pomarańczowy", "różowy", "srebrny", "szary", "turkusowy", "wielobarwny", "zielony", "złoty", "żółty", "", "surowy granatowy", "khaki"];
 
+    //when both ajax request are done convert results to JSON files
     $.when(scrappHouseClothing(),scrappCropp()).done(function () {
         womanCategories = convertWomanCategoriesTOJSON();
         manCategories = convertManCategoriesTOJSON();
@@ -231,7 +233,7 @@ function getHouseOffers(url){
             //console.log(Object.keys(json).length);
         },
         error:function (data) {
-            console.log(data);
+
         }
     });
     return json;
@@ -260,7 +262,7 @@ function convertHouseOfferToJSON(offer) {
     var model = "\"model\":\""+ temp[0] +"\"";
     //console.log(model);
 
-    //get price
+    //get prices
     temp = offer.getAttribute("data-price");
     var price = "\"price\":\""+ temp +"\"";
 
@@ -385,7 +387,7 @@ function getCroppOffers(url) {
             //console.log(Object.keys(json).length);
         },
         error:function (data) {
-            console.log(data);
+
         }
     });
     return json;
@@ -421,11 +423,11 @@ function getHouseSingleOffer(url) {
             var parser = new DOMParser();
             var doc = parser.parseFromString(data, "text/html");
 
-            console.log(data);
+
 
         },
         error:function (data) {
-            console.log(data);
+
         }
     });
     return json;
@@ -441,13 +443,84 @@ function getCroppSingleOffer(url) {
         dataType:"html",
         async:false,
         success:function (data) {
+            var i, temp;
             var parser = new DOMParser();
             var doc = parser.parseFromString(data, "text/html");
 
-            console.log(data);
+            //offer URL
+            var offerUrl = '"url":"' + url + '"';
+            //console.log(offerUrl);
+
+            //offer sku
+            temp = doc.querySelector("div[class='sku']");
+
+            var sku = '"sku":"' + temp.innerText + '"';
+            //console.log(sku);
+
+            //product name
+            temp = doc.querySelector("h1[class='product-name']");
+
+            var name = '"name":"' + temp.innerText + '"';
+            //console.log(name);
+
+            //product price, discount(special price)
+            var price, specialPrice, originalPrice;
+            temp = doc.querySelector("section div[class='price-box'] div[class='old-price']");
+            if (temp != null){
+                temp = temp.innerText.replace("PLN","").replace(/\s+/g, '');
+
+                price = '"price":"' + temp +  '"';
+
+                temp = doc.querySelector("section div[class='price-box'] div[class='special-price']");
+                temp = temp.innerText.replace("PLN","").replace(/\s+/g, '');
+
+                specialPrice = '"special_price":"' + temp +  '"';
+                originalPrice = '"original_price":"' + temp +  '"';
+            }
+            else {
+                specialPrice = '"special_price":"null"';
+
+                temp = doc.querySelector("section div[class='price-box'] div[class='price']");
+                temp = temp.innerText.replace("PLN","").replace(/\s+/g, '');
+
+                price = '"price":"' + temp +  '"';
+                originalPrice = '"original_price":"' + temp +  '"';
+            }
+            //console.log(price);
+            //console.log(specialPrice);
+            //console.log(originalPrice);
+
+            //images of offer
+            temp = doc.querySelectorAll("div[id='productGalleryImg'] a img");
+
+            var img = '"images":[';
+            for (i = 0; i < temp.length; i++){
+                img += '"' + temp[i].getAttribute("src") + '"';
+                if (i < temp.length-1){
+                    img += ",";
+                }
+            }
+            img += "]";
+            //console.log(img);
+
+            //additional product description
+            temp = doc.querySelector("div[class='additional-description']");
+            temp = temp.innerText.trim().replace(/\r?\n/g, "</br>");
+            var description = '"description":"' + temp + '"';
+            //console.log(description);
+
+            var str = "{";
+            str += sku + "," + name + "," + offerUrl + ",";
+            str += price + "," + specialPrice + "," + originalPrice + ",";
+            str += img + "," + description;
+            str +="}";
+
+            //console.log(str);
+            json = JSON.parse(str);
+            console.log(json);
         },
         error:function (data) {
-            console.log(data);
+
         }
     });
     return json;
