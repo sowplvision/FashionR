@@ -29,6 +29,7 @@
             <path url="/__/auth/callback" />
         </host>
     </universal-links>
+    <preference name="AndroidLaunchMode" value="singleTask" />
 
 
 
