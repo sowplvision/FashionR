@@ -21,8 +21,8 @@
 
     <allow-navigation href="*" />
     <allow-intent href="*" />
-    <access origin="*" />
-	<meta http-equiv="Content-Security-Policy" content="default-src 'self' https://apis.google.com data: gap: https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *">
+    <access origin="" />
+
 
 
 </widget>
