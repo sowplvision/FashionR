@@ -90,8 +90,10 @@
 		btnGoogleLogIn.addEventListener('click', function() {
 			var provider = new firebase.auth.GoogleAuthProvider();
 			firebase.auth().signInWithRedirect(provider).then(function(result) {
-				var user = result.user;
-				console.log(user);
+				var token = result.credential.accessToken; 
+				var user = result.user; 
+				console.log("TOKEN: "+token); 
+				console.log("USER"+user);
 			}).catch(function(error) {
 				var errorCode = error.code;
 				var errorMessage = error.message;
@@ -102,8 +104,10 @@
 		btnFBLogIn.addEventListener('click', function() {
 			var provider = new firebase.auth.FacebookAuthProvider();
 			firebase.auth().signInWithRedirect(provider).then(function(result) {
-				var user = result.user;
-				console.log(user);
+				var token = result.credential.accessToken; 
+				var user = result.user; 
+				console.log("TOKEN: "+token); 
+				console.log("USER"+user);
 			}).catch(function(error) {
 				var errorCode = error.code;
 				var errorMessage = error.message;
