@@ -22,8 +22,6 @@
     <allow-navigation href="*" />
     <allow-intent href="*" />
 	<access origin="*" />
-    <access origin="" />
-	<access origin="https://apis.google.com" subdomains="true" />
 
 
 
