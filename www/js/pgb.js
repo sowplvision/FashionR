@@ -10,6 +10,7 @@ function init() {
     //add listenet to single offer page
     $(document).on("pageshow", "#offerPage", function () {
         showOffer();
+        initGallery(1);
     });
 }
 
@@ -78,6 +79,7 @@ function listOffers() {
                 console.log(Object.keys(offers).length);
                 console.log(offers);
 
+                //create html for each single offer
                 for (var offer in offers){
 
                     var img = offers[offer]["image_front"];
@@ -112,6 +114,7 @@ function listOffers() {
                 console.log(Object.keys(offers).length);
                 console.log(offers);
 
+                //create html for each single offer
                 for (var offer in offers){
 
                     var img = offers[offer]["image_front"];
@@ -175,6 +178,15 @@ function showOffer() {
         gallery += "<img src='" + offerDetails["images"][img] + "'/>"
     }
 
+    //add buttons to gallery
+    var i = 1;
+    gallery += '<div class="controls"><button class="galleryBtn prevImg" onclick="plusDivs(-1)">&#10094;</button>';
+    for (var img in offerDetails["images"]){
+        gallery += '<span class="dots" onclick="currentDiv('+ i +')"></span>';
+        i++;
+    }
+    gallery += '<button class="galleryBtn nextImg" onclick="plusDivs(1)">&#10095;</button></div>';
+
     //convert price
     var oldPrice = offerDetails["special_price"];
 
@@ -188,7 +200,7 @@ function showOffer() {
 
     //html code for offer details
     html = '<div class="singleOffer">';
-    html += '<div class="offerGallery">' + gallery +'</div>';
+    html += '<div class="offerGallery">' + gallery + '</div>'
     html += '<div class="offerName">' + offerDetails["name"] +'</div>';
     html += '<div class="offerDescription">' + offerDetails["description"] + '</div>';
     html += '<div class="offerPricebox"><div class="oldPrice"><s>' + oldPrice.replace(",",".") + '</s>';
@@ -196,7 +208,7 @@ function showOffer() {
     html += '</div>';
 
     //set html to element
-    document.getElementById("offerDetails").innerHTML = html
+    document.getElementById("offerDetails").innerHTML = html;
 }
 
 function refreshPage() {

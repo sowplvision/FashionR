@@ -555,7 +555,7 @@ body {
 }
 
 .singleOffer{
-
+    margin-top: 8vh;
 }
 
 .offerGallery img{
@@ -563,6 +563,7 @@ body {
     height: 100%;
     border-radius: 15px;
     object-fit: contain;
+    display: block;
 }
 
 .offerName{
@@ -614,3 +615,13 @@ body {
   font-weight: 700;
   color: #000000;
 }
+
+.controls{}
+
+.galleryBtn{}
+
+.galleryBtn.prevImg{}
+
+.galleryBtn.nextImg{}
+
+.dots{}
