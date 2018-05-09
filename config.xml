@@ -10,6 +10,7 @@
 		Daniel Kucharczyk, Wojciech Wisla, Anna Zukowska
 	</author>
 	<platform name="android" />
+	<preference name="AndroidLaunchMode" value="singleTask" />
 	
 	<plugin name="cordova-plugin-device" spec="~1.1.4" />
 	<plugin name="cordova-plugin-dialogs" spec="~1.3.1" />
