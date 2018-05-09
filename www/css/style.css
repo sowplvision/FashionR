@@ -468,8 +468,9 @@ body {
     background-color: #e8c995;
     margin-left: 2vw;
     margin-top: 3vh;
-    border: 1px solid black;
+    border: 1.5px solid rgb(37, 37, 37);
     border-radius: 15px;
+    box-shadow: 5px 10px 8px #888888;
     width: 43vw;
     height: auto;
     position: relative;
@@ -565,21 +566,51 @@ body {
 }
 
 .offerName{
-
+  margin-top: 0%;
+  margin-bottom: 0%;
+  padding-top: 0%;
+  padding-bottom: 0%;
+  text-align: center;
+  font: 5vh 'Advent Pro', Arial, Helvetica, sans-serif;
+  text-decoration: bold;
+  font-weight: 700;
+  color: #142e3f;
 }
 
 .offerDescription{
-
+  margin-top: 0%;
+  margin-bottom: 0%;
+  padding-top: 0%;
+  padding-bottom: 0%;
+  text-align: center;
+  font: 3vh 'ABeeZee', Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  color: #142e3f;
 }
 
 .offerPricebox{
-
+  background-color: #fdc68f;
 }
 
 .oldPrice{
-
+  margin-top: 0%;
+  margin-bottom: 0%;
+  padding-top: 0%;
+  padding-bottom: 0%;
+  text-align: right;
+  font: 5vh 'Dancing Script', Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  color: red;
+  background-color: grey;
 }
 
 .price{
-
+  margin-top: 0%;
+  margin-bottom: 0%;
+  padding-top: 0%;
+  padding-bottom: 0%;
+  text-align: right;
+  font: 7vh 'Dancing Script', Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  color: #000000;
 }
