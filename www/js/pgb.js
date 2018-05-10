@@ -115,7 +115,7 @@ function listOffers() {
                         var url = offers[offer]["url"];
 
                         html += "<div class='offer' onclick='show(\"" + url + "\")'>";
-                        html += "<div class='offerImg'><img src=\"" + img + "\"/></div>";
+                        html += "<div class='offerImg'><img class='houseImg' src=\"" + img + "\"/></div>";
                         html += "<div class='offerFooter'>";
                         html += "<img src='img/house.png'/>";
                         html += "<p class='offerCategory'>"+ offers[offer]["name"] +"</p>";
@@ -152,7 +152,7 @@ function listOffers() {
 
                         //HTML which is added to site
                         html += "<div class='offer' onclick='show(\"" + url + "\")'>";
-                        html += "<div class='offerImg'><img src=\"" + img + "\"/></div>";
+                        html += "<div class='offerImg'><img class='croppImg' src=\"" + img + "\"/></div>";
                         html += "<div class='offerFooter'>";
                         html += "<img src='img/cropp.png'/>";
                         html += "<p class='offerCategory'>"+ offers[offer]["name"] +"</p>";
@@ -269,15 +269,17 @@ function showFavourites() {
 
     //create html of offers before showing it
     var html = "";
-    var i, favOffer, logo;
+    var i, favOffer, logo, imgClass;
     for (i = 0; i < favourites.length; i++){
         if (favourites[i].includes("house.pl")){
             favOffer = getHouseSingleOffer(favourites[i]);
             logo = "<img src='img/house.png'/>";
+            imgClass = "houseImg";
         }
         else if(favourites[i].includes("cropp.com")){
             favOffer = getCroppSingleOffer(favourites[i]);
             logo = "<img src='img/cropp.png'/>";
+            imgClass = "croppImg";
         }
 
         var url = favourites[i];
@@ -299,7 +301,7 @@ function showFavourites() {
 
         //HTML which is added to site
         html += "<div class='offer' onclick='show(\"" + url + "\")'>";
-        html += "<div class='offerImg'><img src=\"" + img + "\"/></div>";
+        html += "<div class='offerImg'><img class='"+ imgClass +"' src=\"" + img + "\"/></div>";
         html += "<div class='offerFooter'>";
         html += logo;
         html += "<p class='offerCategory'>"+ name +"</p>";
