@@ -82,10 +82,16 @@
 		});
 
 		$('a.logout').click(function() {
-			userID = 'empty';
-			userInfo = 'empty';
-			preferencesValue = 'empty';
-			isPreferencesSet = false;
+            firstLogin = false;
+            userID = 'empty';
+            userName = 'empty';
+            userFavourites = 'empty'
+            userInfo = 'empty';
+            userSex = 'empty'
+            preferencesValue = 'empty';
+            favouritesValue = 'empty';
+            isPreferencesSet = false;
+            isGenderSet = false;
 			firebase.auth().signOut();
 		});
 	  
