@@ -737,3 +737,7 @@ p.offerCategory{
   text-shadow: 0 -1px 0 #c1a3f0;
   background: url('../img/kosz.png') 0px 0px no-repeat;
 }
+
+#favouritesOffers{
+    margin-top: 9vh;
+}

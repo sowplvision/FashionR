@@ -14,6 +14,12 @@ function init() {
         showOffer();
         initGallery(1);
     });
+
+    $(document).on("pageshow", "#favouritesPage", function () {
+        $.when(updateFirebase()).done(function () {
+            showFavourites();
+        });
+    });
 }
 
 function listCategories() {
@@ -238,6 +244,50 @@ function showOffer() {
         document.getElementById("like").style.display = "block";
         document.getElementById("dislike").style.display = "none";
     }
+}
+
+function showFavourites() {
+    var favourites = getFavourites();
+
+    var html = "";
+    var i, favOffer, logo;
+    for (i = 0; i < favourites.length; i++){
+        if (favourites[i].includes("house.pl")){
+            favOffer = getHouseSingleOffer(favourites[i]);
+            logo = "<img src='img/house.png'/>";
+        }
+        else if(favourites[i].includes("cropp.com")){
+            favOffer = getCroppSingleOffer(favourites[i]);
+            logo = "<img src='img/cropp.png'/>";
+        }
+
+        var url = favourites[i];
+
+        var img = favOffer["images"][0];
+
+        var name = favOffer["name"];
+
+        //convert price
+        var oldPrice = favOffer["special_price"];
+
+        if (oldPrice !='null'){
+            oldPrice = favOffer["price"];
+        }
+        else {
+            oldPrice = "";
+        }
+        var price = favOffer["original_price"];
+
+        html += "<div class='offer' onclick='show(\"" + url + "\")'>";
+        html += "<div class='offerImg'><img src=\"" + img + "\"/></div>";
+        html += "<div class='offerFooter'>";
+        html += logo;
+        html += "<p class='offerCategory'>"+ name +"</p>";
+        html += "<p><s>" + oldPrice.replace(",", ".") + "</s>" + price + "</p>";
+        html += "</div>";
+        html += "</div>";
+    }
+    document.getElementById("favouritesOffers").innerHTML = html;
 }
 
 function refreshPage() {
