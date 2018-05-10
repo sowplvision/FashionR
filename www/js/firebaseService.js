@@ -183,6 +183,7 @@ function setFavourites(newFavourite) {
             } else {
                 console.log("Preferences updating");
                 var updates = {};
+                updates['/users/' + userID + '/gender'] = userSex;
                 updates['/users/' + userID + '/preferences'] = preferencesValue;
                 firebase.database().ref().update(updates);
                 $.mobile.changePage('#loggedInPage');
