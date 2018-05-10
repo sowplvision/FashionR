@@ -17,6 +17,10 @@ function getCategories(type) {
     }
 }
 
+function getColors() {
+    return colorTable;
+}
+
 function scrapp(){
     //Tables with categories
     houseWomanCategories = [];

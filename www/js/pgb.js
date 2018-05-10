@@ -33,6 +33,10 @@ function init() {
             showFavourites();
         });
     });
+
+    $(document).on("pagebeforeshow", "#filtersPage", function () {
+        createFilters();
+    });
 }
 
 function listCategories() {
@@ -320,4 +324,48 @@ function refreshPage() {
         transition: 'none',
         reloadPage: true
     });
+}
+
+function createFilters(){
+    var categories;
+    var html = "";
+
+    //get gender
+    var e = document.getElementById("filterGender");
+    var value = e.options[e.selectedIndex].value;
+
+    //react for option
+    if (value==='1'){
+        categories = getCategories('woman');
+    }
+    else if(value==='2'){
+        categories = getCategories('man');
+    }
+    else {
+        categories = "";
+    }
+
+    //create select options for gender
+    var i = 1;
+    html += "<option value='0'>Wybierz kategorie:</option>";
+    for (var category in categories){
+        html += "<option value='" + i +"'>" + category + "</option>";
+        i++;
+    }
+    //set html to element
+    document.getElementById("filterCategory").innerHTML = html;
+
+    html = "";
+    var colors = getColors();
+
+    html += "<option value='0'>Wybierz kolor:</option>";
+    for (i = 0; i < colors.length; i++){
+        html += "<option value='" + (i+1) +"'>" + colors[i] + "</option>";
+    }
+    //set html to element
+    document.getElementById("filterColor").innerHTML = html;
+}
+
+function listFilteredOffers(){
+
 }
