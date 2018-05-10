@@ -2,6 +2,7 @@ function init() {
     //when document is ready download categories and add listener for offer list page
     $(document).ready(function () {
         $.when(scrapp()).done(function () {
+            //when categories are downloaded and preferences show offers
             $( document ).on("pageshow", "#loggedInPage", function() {
                 $.when(updateFirebase()).done(function () {
                     listOffers();
@@ -9,12 +10,24 @@ function init() {
             });
         });
     });
-    //add listenet to single offer page
+    //remove bad feeling on loading offer - old offer was remain for 1s
+    $(document).on("pagebeforeshow", "#offerPage", function () {
+        document.getElementById("favouritesOffers").innerHTML = "";
+    });
+
+    //when page is showed get load offer
     $(document).on("pageshow", "#offerPage", function () {
         showOffer();
         initGallery(1);
     });
 
+    //when page is loaded show favourites
+    $(document).on("pagebeforeshow", "#favouritesPage", function () {
+        $.when(updateFirebase()).done(function () {
+            showFavourites();
+        });
+    });
+    //when page is loaded show favourites
     $(document).on("pageshow", "#favouritesPage", function () {
         $.when(updateFirebase()).done(function () {
             showFavourites();
@@ -137,6 +150,7 @@ function listOffers() {
 
                         var url = offers[offer]["url"];
 
+                        //HTML which is added to site
                         html += "<div class='offer' onclick='show(\"" + url + "\")'>";
                         html += "<div class='offerImg'><img src=\"" + img + "\"/></div>";
                         html += "<div class='offerFooter'>";
@@ -166,6 +180,7 @@ function show(url) {
 }
 
 function showOffer() {
+    //get stored url to clicked offer
     var url = localStorage.url;
 
     var favourites = getFavourites();
@@ -208,7 +223,7 @@ function showOffer() {
     }
     var price = offerDetails["original_price"];
 
-    //
+    //Like Dislike button
     var favBtn = '';
     favBtn += '<div class="addToFavourite">';
     favBtn += '<button class="favourite" id="like" onclick="addToFav()" data-role="none">Dodaj do ulubionych</button>';
@@ -228,6 +243,7 @@ function showOffer() {
     //set html to element
     document.getElementById("offerDetails").innerHTML = html;
 
+    //check isFavourite when offer is loading
     var i;
     var isFav = false;
     for (i = 0; i < favourites.length; i++){
@@ -236,6 +252,7 @@ function showOffer() {
         }
     }
 
+    //If is in favs then hide like button
     if(isFav){
         document.getElementById("like").style.display = "none";
         document.getElementById("dislike").style.display = "block";
@@ -247,8 +264,10 @@ function showOffer() {
 }
 
 function showFavourites() {
+    //get favs from firebase
     var favourites = getFavourites();
 
+    //create html of offers before showing it
     var html = "";
     var i, favOffer, logo;
     for (i = 0; i < favourites.length; i++){
@@ -278,6 +297,7 @@ function showFavourites() {
         }
         var price = favOffer["original_price"];
 
+        //HTML which is added to site
         html += "<div class='offer' onclick='show(\"" + url + "\")'>";
         html += "<div class='offerImg'><img src=\"" + img + "\"/></div>";
         html += "<div class='offerFooter'>";
@@ -287,6 +307,7 @@ function showFavourites() {
         html += "</div>";
         html += "</div>";
     }
+    //add html code to element
     document.getElementById("favouritesOffers").innerHTML = html;
 }
 

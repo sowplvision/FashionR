@@ -46,7 +46,7 @@ function addToFav() {
         var i =0;
         for (i; i<favouritesValue.length; i++){
             console.log(favouritesValue[i]);
-            if(favouritesValue[i] == url) { isInFav = true; alert("Oferta już dodana!")}
+            if(favouritesValue[i] == url) { isInFav = true;}
         }
         if(!isInFav){
             favouritesValue.push(url);
@@ -56,6 +56,9 @@ function addToFav() {
     var updates = {};
     updates['/users/' + userID + '/favourites'] = favouritesValue;
     firebase.database().ref().update(updates);
+
+    document.getElementById("like").style.display = "none";
+    document.getElementById("dislike").style.display = "block";
 }
 
 function removeFromFav() {
@@ -76,6 +79,9 @@ function removeFromFav() {
     var updates = {};
     updates['/users/' + userID + '/favourites'] = newFav;
     firebase.database().ref().update(updates);
+
+    document.getElementById("like").style.display = "block";
+    document.getElementById("dislike").style.display = "none";
 }
 
 	$(document).ready(function(){
