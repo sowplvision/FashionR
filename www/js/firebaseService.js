@@ -16,27 +16,18 @@ var userID = 'empty';
 	}());
 
 function getPreferences() {
-    firebase.database().ref('users/' + userID +'/preferences').once('value').then(function(snapshot) {
-        preferencesValue = snapshot.val();
-        console.log("Preferences check getPref: ");
-        console.log(preferencesValue);
-    });
+    console.log("Preferences check getPref: ");
+    console.log(preferencesValue);
     return preferencesValue;
 }
 function getGender() {
-    firebase.database().ref('users/' + userID +'/gender').once('value').then(function(snapshot) {
-        userSex = snapshot.val();
-        console.log("Preferences check getGender: ");
-        console.log(userSex);
-    });
+    console.log("Preferences check getGender: ");
+    console.log(userSex);
     return userSex;
 }
 function getFavourites() {
-    firebase.database().ref('users/' + userID +'/favourites').once('value').then(function(snapshot) {
-        favouritesValue = snapshot.val();
-        console.log("Preferences check getFav: ");
-        console.log(favouritesValue);
-    });
+    console.log("Preferences check getFav: ");
+    console.log(favouritesValue);
     return favouritesValue;
 }
 function setFavourites(newFavourite) {
@@ -59,7 +50,7 @@ function setFavourites(newFavourite) {
 		const btnRegis = document.getElementById('register');
 		const selectSex = document.getElementById('gender');
 		var firstLogin = false;
-        var userName = 'empty';
+		var userName = 'empty';
 		var userFavourites = 'empty';
 		var userInfo = 'empty';
 		var isPreferencesSet = false;
@@ -204,6 +195,15 @@ function setFavourites(newFavourite) {
 		firebase.auth().onAuthStateChanged(firebaseUser => {
 			if(firebaseUser){
 				userID = firebaseUser.uid;
+                firebase.database().ref('users/' + userID +'/preferences').once('value').then(function(snapshot) {
+                    preferencesValue = snapshot.val();
+                });
+                firebase.database().ref('users/' + userID +'/gender').once('value').then(function(snapshot) {
+                    userSex = snapshot.val();
+                });
+                firebase.database().ref('users/' + userID +'/favourites').once('value').then(function(snapshot) {
+                    favouritesValue = snapshot.val();
+                });
 				if(firstLogin == true) {
 					firebase.database().ref().child('users/'+userID).set(userInfo);
 					firstLogin = false;
