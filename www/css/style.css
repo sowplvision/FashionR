@@ -685,3 +685,20 @@ body {
   border:1px solid rgba(0, 0, 0, 0.6)!important;
   background-color:transparent!important;
 }
+
+p.offerCategory{
+    margin-top: 0.5vh;
+    margin-bottom: 0.5vh;
+    height: 6vw;
+    text-align: center;
+    font-size: 2.3vw;
+}
+
+.addToFavourite{}
+
+/*
+   to jest klasa i id buttona add to favourite
+ */
+.favourite{}
+
+#favouriteBtn{}

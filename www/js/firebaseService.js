@@ -196,15 +196,7 @@ function setFavourites(newFavourite) {
 		firebase.auth().onAuthStateChanged(firebaseUser => {
 			if(firebaseUser){
 				userID = firebaseUser.uid;
-                firebase.database().ref('users/' + userID +'/preferences').once('value').then(function(snapshot) {
-                    preferencesValue = snapshot.val();
-                });
-                firebase.database().ref('users/' + userID +'/gender').once('value').then(function(snapshot) {
-                    userSex = snapshot.val();
-                });
-                firebase.database().ref('users/' + userID +'/favourites').once('value').then(function(snapshot) {
-                    favouritesValue = snapshot.val();
-                });
+                updateFirebase();
 				if(firstLogin == true) {
 					firebase.database().ref().child('users/'+userID).set(userInfo);
 					firstLogin = false;
@@ -235,3 +227,15 @@ function setFavourites(newFavourite) {
 			}
 		});
 	  });
+
+function updateFirebase() {
+    firebase.database().ref('users/' + userID +'/preferences').once('value').then(function(snapshot) {
+        preferencesValue = snapshot.val();
+    });
+    firebase.database().ref('users/' + userID +'/gender').once('value').then(function(snapshot) {
+        userSex = snapshot.val();
+    });
+    firebase.database().ref('users/' + userID +'/favourites').once('value').then(function(snapshot) {
+        favouritesValue = snapshot.val();
+    });
+}

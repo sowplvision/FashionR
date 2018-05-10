@@ -423,8 +423,8 @@ function getHouseSingleOffer(url) {
             var parser = new DOMParser();
             var doc = parser.parseFromString(data, "text/html");
 
-
-
+            //offer URL
+            var offerUrl = '"url":"' + url + '"';
         },
         error:function (data) {
 

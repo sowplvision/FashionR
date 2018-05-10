@@ -3,7 +3,9 @@ function init() {
     $(document).ready(function () {
         $.when(scrapp()).done(function () {
             $( document ).on("pageshow", "#loggedInPage", function() {
-                listOffers();
+                $.when(updateFirebase()).done(function () {
+                    listOffers();
+                });
             });
         });
     });
@@ -44,99 +46,100 @@ function listCategories() {
 }
 function listOffers() {
     var i;
-
-    //get values of preferences - not ready yet
-    var e = document.getElementById("gender");
-    var value = e.options[e.selectedIndex].value;
-
-    //temporary setting
-    value = '1';
+    var gender = getGender();
+    var preferences = getPreferences();
 
     var categories;
     var html = "";
 
     //react for option
-    if (value==='1'){
+    if (gender==='woman'){
         categories = getCategories('woman');
     }
-    else if(value==='2'){
+    else if(gender==='man'){
         categories = getCategories('man');
     }
     else {
         categories = "";
     }
 
+    var j;
+
     //showing offers for category
-    for (var category in categories){
-        if (category.includes("T-shirty")) {
-            console.log(category);
-            //Creating html code for single house offer
-            for (i = 0; i < categories[category]["House"].length; i++) {
-                var url = categories[category]["House"][i];
-                //console.log(url);
+    for (j = 0; j < Object.keys(preferences).length; j++) {
+        for (var category in categories) {
+            if (category.includes(preferences[j])) {
+                console.log(category);
+                //Creating html code for single house offer
+                for (i = 0; i < categories[category]["House"].length; i++) {
+                    var url = categories[category]["House"][i];
+                    //console.log(url);
 
-                var offers = getHouseOffers(url);
-                console.log(Object.keys(offers).length);
-                console.log(offers);
+                    var offers = getHouseOffers(url);
+                    console.log(Object.keys(offers).length);
+                    console.log(offers);
 
-                //create html for each single offer
-                for (var offer in offers){
+                    //create html for each single offer
+                    for (var offer in offers) {
 
-                    var img = offers[offer]["image_front"];
-                    var oldPrice = offers[offer]["special_price"];
+                        var img = offers[offer]["image_front"];
+                        var oldPrice = offers[offer]["special_price"];
 
-                    if (oldPrice !=null){
-                        oldPrice = offers[offer]["price"];
+                        if (oldPrice != null) {
+                            oldPrice = offers[offer]["price"];
+                        }
+                        else {
+                            oldPrice = "";
+                        }
+                        var price = offers[offer]["original_price"];
+
+                        var url = offers[offer]["url"];
+
+                        html += "<div class='offer' onclick='show(\"" + url + "\")'>";
+                        html += "<div class='offerImg'><img src=\"" + img + "\"/></div>";
+                        html += "<div class='offerFooter'>";
+                        html += "<img src='img/house.png'/>";
+                        html += "<p class='offerCategory'>"+ offers[offer]["name"] +"</p>";
+                        html += "<p><s>" + oldPrice.replace(",", ".") + "</s>" + price.replace(",", ".") + "</p>";
+                        html += "</div>";
+                        html += "</div>";
                     }
-                    else {
-                        oldPrice = "";
-                    }
-                    var price = offers[offer]["original_price"];
-
-                    var url = offers[offer]["url"];
-
-                    html += "<div class='offer' onclick='show(\"" + url + "\")'>";
-                    html += "<div class='offerImg'><img src=\"" + img + "\"/></div>";
-                    html += "<div class='offerFooter'>";
-                    html += "<img src='img/house.png'/>";
-                    html += "<p><s>" + oldPrice.replace(",",".") + "</s>" + price.replace(",",".") + "</p>";
-                    html += "</div>";
-                    html += "</div>";
                 }
-            }
 
-            //Creating html code for single cropp offer
-            for (i = 0; i < categories[category]["Cropp"].length; i++) {
-                var url = categories[category]["Cropp"][i];
-                //console.log(url);
+                //Creating html code for single cropp offer
+                for (i = 0; i < categories[category]["Cropp"].length; i++) {
+                    var url = categories[category]["Cropp"][i];
+                    //console.log(url);
 
-                var offers = getCroppOffers(url);
-                console.log(Object.keys(offers).length);
-                console.log(offers);
+                    var offers = getCroppOffers(url);
+                    console.log(Object.keys(offers).length);
+                    console.log(offers);
 
-                //create html for each single offer
-                for (var offer in offers){
+                    //create html for each single offer
+                    for (var offer in offers) {
 
-                    var img = offers[offer]["image_front"];
-                    var oldPrice = offers[offer]["special_price"];
+                        var img = offers[offer]["image_front"];
+                        var oldPrice = offers[offer]["special_price"];
 
-                    if (oldPrice !=null){
-                        oldPrice = offers[offer]["price"];
+                        if (oldPrice != null) {
+                            oldPrice = offers[offer]["price"];
+                        }
+                        else {
+                            oldPrice = "";
+                        }
+                        var price = offers[offer]["original_price"];
+
+                        var url = offers[offer]["url"];
+
+                        html += "<div class='offer' onclick='show(\"" + url + "\")'>";
+                        html += "<div class='offerImg'><img src=\"" + img + "\"/></div>";
+                        html += "<div class='offerFooter'>";
+                        html += "<img src='img/cropp.png'/>";
+                        html += "<p class='offerCategory'>"+ offers[offer]["name"] +"</p>";
+                        html += "<p><s>" + oldPrice.replace(",", ".") + "</s>" + price + "</p>";
+                        html += "</div>";
+                        html += "</div>";
                     }
-                    else {
-                        oldPrice = "";
-                    }
-                    var price = offers[offer]["original_price"];
-
-                    var url = offers[offer]["url"];
-
-                    html += "<div class='offer' onclick='show(\"" + url + "\")'>";
-                    html += "<div class='offerImg'><img src=\"" + img + "\"/></div>";
-                    html += "<div class='offerFooter'>";
-                    html += "<img src='img/cropp.png'/>";
-                    html += "<p><s>" + oldPrice.replace(",",".") + "</s>" + price + "</p>";
-                    html += "</div>";
-                    html += "</div>";
                 }
             }
         }
@@ -205,6 +208,7 @@ function showOffer() {
     html += '<div class="offerDescription">' + offerDetails["description"] + '</div>';
     html += '<div class="offerPricebox"><div class="oldPrice"><s>' + oldPrice.replace(",",".") + '</s>';
     html += '</div><div class="price">' + price.replace(",",".") + '</div></div>';
+    html += '<div class="addToFavourite"><button class="favourite" id="favouriteBtn"><3</button></div>'
     html += '</div>';
 
     //set html to element

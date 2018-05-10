@@ -19,7 +19,6 @@ function showDivs(n) {
     var dots = document.getElementsByClassName("dots");
     if (n > x.length) {slideIndex = 1} 
     if (n < 1) {slideIndex = x.length}
-    console.log(x.length);
     for (i = 0; i < x.length; i++) {
         x[i].style = "display:none;";
     }
