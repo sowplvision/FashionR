@@ -162,6 +162,7 @@ function show(url) {
 function showOffer() {
     var url = localStorage.url;
 
+    var favourites = getFavourites();
     //console.log(url);
 
     var offerDetails;
@@ -201,6 +202,13 @@ function showOffer() {
     }
     var price = offerDetails["original_price"];
 
+    //
+    var favBtn = '';
+    favBtn += '<div class="addToFavourite">';
+    favBtn += '<button class="favourite" id="like" onclick="addToFav()" data-role="none">Dodaj do ulubionych</button>';
+    favBtn += '<button class="dislike" id="dislike" onclick="removeFromFav()" data-role="none">Usuń z ulubionych</button>';
+    favBtn += '</div>';
+
     //html code for offer details
     html = '<div class="singleOffer">';
     html += '<div class="offerGallery">' + gallery + '</div>'
@@ -208,11 +216,28 @@ function showOffer() {
     html += '<div class="offerDescription">' + offerDetails["description"] + '</div>';
     html += '<div class="offerPricebox"><div class="oldPrice"><s>' + oldPrice.replace(",",".") + '</s>';
     html += '</div><div class="price">' + price.replace(",",".") + '</div></div>';
-    html += '<div class="addToFavourite"><button class="favourite" onclick="addToFav()" data-role="none">Dodaj do ulubionych <3</button></div>'
+    html += favBtn;
     html += '</div>';
 
     //set html to element
     document.getElementById("offerDetails").innerHTML = html;
+
+    var i;
+    var isFav = false;
+    for (i = 0; i < favourites.length; i++){
+        if(url === favourites[i]){
+            isFav = true
+        }
+    }
+
+    if(isFav){
+        document.getElementById("like").style.display = "none";
+        document.getElementById("dislike").style.display = "block";
+    }
+    else {
+        document.getElementById("like").style.display = "block";
+        document.getElementById("dislike").style.display = "none";
+    }
 }
 
 function refreshPage() {
