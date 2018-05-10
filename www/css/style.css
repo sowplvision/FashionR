@@ -267,7 +267,7 @@ body {
   z-index: 3 !important; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
-  background-color: #111; /* Black*/
+  background-color: rgba(18, 55, 80, 0.9);
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px !important; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
@@ -277,9 +277,9 @@ body {
 .sidenav a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
-  font: 20px 'Advent Pro', Arial, Helvetica, sans-serif;
+  font: 35px 'Advent Pro', Arial, Helvetica, sans-serif;
   font-weight: lighter;
-  color: #818181;
+  color: rgb(111, 190, 240) !important;
   display: block;
   transition: 0.3s;
 }
@@ -297,6 +297,7 @@ body {
   font-size: 36px;
   margin-left: 50px;
 }
+
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
@@ -323,7 +324,7 @@ body {
 .bar1, .bar2, .bar3 {
   width: 35px;
   height: 5px;
-  background-color: #333;
+  background-color: #dce7eb;
   margin: 6px 0;
   transition: 0.4s;
 }
