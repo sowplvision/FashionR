@@ -106,12 +106,12 @@ body {
 .login-box .formSignIn input[type="email"], input[type="password"],
 .login-box .formRegister input[type="email"], input[type="password"]
 {
-    font: 3vh 'Advent Pro', Arial, Helvetica, sans-serif;
+    font: 20px 'Advent Pro', Arial, Helvetica, sans-serif;
     font-weight: lighter;
     border-bottom: 1px solid #fff;
     background-color: transparent;
     outline: none;
-    height: 4vh;
+    height: 34px !important;
     color: white;
 }
 
@@ -471,7 +471,7 @@ body {
     border: 1.5px solid rgb(37, 37, 37);
     border-radius: 15px;
     box-shadow: 5px 10px 8px #888888;
-    width: 43vw;
+    width: 42vw;
     height: auto;
     position: relative;
     cursor: pointer;
@@ -555,7 +555,7 @@ body {
 }
 
 .singleOffer{
-    margin-top: 8vh;
+    margin-top: 10vh;
 }
 
 .offerGallery img{
@@ -567,20 +567,20 @@ body {
 }
 
 .offerName{
-  margin-top: 0%;
+  margin-top: 5%;
   margin-bottom: 0%;
   padding-top: 0%;
   padding-bottom: 0%;
   text-align: center;
-  font: 5vh 'Roboto', Arial, Helvetica, sans-serif;
+  font: 5vh 'ABeeZee', Arial, Helvetica, sans-serif;
   text-decoration: bold;
   font-weight: 700;
   color: #142e3f;
 }
 
 .offerDescription{
-  margin-top: 0%;
-  margin-bottom: 0%;
+  margin-top: 5%;
+  margin-bottom: 5%;
   padding-top: 0%;
   padding-bottom: 0%;
   text-align: justify;
