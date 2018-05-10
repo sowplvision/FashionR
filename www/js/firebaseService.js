@@ -42,22 +42,42 @@ function addToFav() {
     } else if (!favouritesValue) {
         newFav[0] = url;
         favouritesValue = newFav;
-	} else {
-    	var i =0;
+    } else {
+        var i =0;
         for (i; i<favouritesValue.length; i++){
-        	console.log(favouritesValue[i]);
-        	if(favouritesValue[i] == url) { isInFav = true; alert("Oferta już dodana!")}
+            console.log(favouritesValue[i]);
+            if(favouritesValue[i] == url) { isInFav = true; alert("Oferta już dodana!")}
         }
         if(!isInFav){
             favouritesValue.push(url);
-		}
-	}
-	console.log(favouritesValue);
+        }
+    }
+    console.log(favouritesValue);
     var updates = {};
     updates['/users/' + userID + '/favourites'] = favouritesValue;
     firebase.database().ref().update(updates);
 }
-	
+
+function removeFromFav() {
+    var url = localStorage.url;
+    var newFav = [];
+
+    var i =0;
+    if(favouritesValue.length == 1) {
+    	newFav = 'empty';
+	} else {
+        for (i; i<favouritesValue.length; i++){
+            console.log(favouritesValue[i]);
+            if(favouritesValue[i] != url) { newFav.push(favouritesValue[i]);}
+        }
+	}
+    console.log('zmieniono FAV:   ');
+    console.log(newFav);
+    var updates = {};
+    updates['/users/' + userID + '/favourites'] = newFav;
+    firebase.database().ref().update(updates);
+}
+
 	$(document).ready(function(){
 		const emailInput = document.getElementById('emailLog');
 		const passInput = document.getElementById('passwordLog');
