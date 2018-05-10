@@ -134,7 +134,7 @@ function convertWomanCategoriesTOJSON() {
     str += "{";
 
     str += "\"T-shirty, topy\":{\"House\":[" + findCategoryUrl("T-shirty", houseWomanCategories) + "], \"Cropp\":[" + findCategoryUrl("KOSZULKI", croppWomanCategories) + "]},";
-    str += "\"Kurtki, kamizelki, płaszcze\":{\"House\":[" + findCategoryUrl("Kurtki", houseWomanCategories) + "], \"Cropp\":[" + findCategoryUrl("KURTKI", croppWomanCategories) + "]},";
+    str += "\"Kurtki, płaszcze\":{\"House\":[" + findCategoryUrl("Kurtki", houseWomanCategories) + "], \"Cropp\":[" + findCategoryUrl("KURTKI", croppWomanCategories) + "]},";
     str += "\"Bluzki, koszule\":{\"House\":[" + findCategoryUrl("Bluzki", houseWomanCategories) + "], \"Cropp\":[" + findCategoryUrl("BLUZKI", croppWomanCategories) + "," + findCategoryUrl("KOSZULE", croppWomanCategories) + "]},";
     str += "\"Spodnie\":{\"House\":[" + findCategoryUrl("Spodnie", houseWomanCategories) + "], \"Cropp\":[" + findCategoryUrl("SPODNIE", croppWomanCategories) + "]},";
     str += "\"Sukienki, kombinezony\":{\"House\":[" + findCategoryUrl("Sukienki", houseWomanCategories) + "], \"Cropp\":[" + findCategoryUrl("SUKIENKI", croppWomanCategories) + "]},";1
@@ -165,7 +165,7 @@ function convertManCategoriesTOJSON() {
     str += "{";
 
     str += "\"T-shirty\":{\"House\":[" + findCategoryUrl("T-shirty", houseManCategories) + "], \"Cropp\":[" + findCategoryUrl("KOSZULKI", croppManCategories) + "]},";
-    str += "\"Kurtki, kamizelki, płaszcze\":{\"House\":[" + findCategoryUrl("Kurtki", houseManCategories) + "], \"Cropp\":[" + findCategoryUrl("KURTKI", croppManCategories) + "]},";
+    str += "\"Kurtki, płaszcze\":{\"House\":[" + findCategoryUrl("Kurtki", houseManCategories) + "], \"Cropp\":[" + findCategoryUrl("KURTKI", croppManCategories) + "]},";
     str += "\"Koszule\":{\"House\":[" + findCategoryUrl("Koszule", houseManCategories) + "], \"Cropp\":[" + findCategoryUrl("KOSZULE", croppManCategories) + "]},";
     str += "\"Spodnie\":{\"House\":[" + findCategoryUrl("Spodnie", houseManCategories) + "], \"Cropp\":[" + findCategoryUrl("SPODNIE", croppManCategories) + "]},";
     str += "\"Jeansy\":{\"House\":[" + findCategoryUrl("Jeansy", houseManCategories) + "], \"Cropp\":[" + findCategoryUrl("JEANS", croppManCategories) + "]},";

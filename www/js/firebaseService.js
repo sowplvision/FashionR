@@ -1,6 +1,7 @@
 var userSex = 'empty';
 var preferencesValue = 'empty';
 var favouritesValue = 'empty';
+var userID = 'empty';
 
 (function() {
 	const config = {
@@ -58,9 +59,7 @@ function setFavourites(newFavourite) {
 		const btnRegis = document.getElementById('register');
 		const selectSex = document.getElementById('gender');
 		var firstLogin = false;
-		var userObject;
-		var userID = 'empty';
-		var userName = 'empty';
+        var userName = 'empty';
 		var userFavourites = 'empty';
 		var userInfo = 'empty';
 		var isPreferencesSet = false;
