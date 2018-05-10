@@ -461,7 +461,7 @@ body {
 }
 
 #offersContainer{
-    margin-top: 5vh;
+    margin-top: 9vh;
 }
 
 .offer{
@@ -488,11 +488,12 @@ body {
 
 .offerFooter p{
     margin-top: 2vw;
-    margin-right: 0.4vw;
+    margin-right: 0.6vw;
     text-align: right;
-    font: 3vh 'ABeeZee', Arial, Helvetica, sans-serif;
-    font-weight: 400;
-    color: #142e3f;
+    font: 3vh 'Dancing Script', Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    color: #020c13;
+    text-shadow: -0.4px 0 #BDB098, 0 0.4px #BDB098, 0.4px 0 #BDB098, 0 -0.4px #BDB098;
 }
 
 .offerFooter p s{
@@ -690,8 +691,11 @@ p.offerCategory{
     margin-top: 0.5vh;
     margin-bottom: 0.5vh;
     height: 6vw;
+    color: #142e3f !important;
     text-align: center;
-    font-size: 2.3vw;
+    font: 2.2vh 'ABeeZee', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-shadow: -0.1px 0 #BDB098, 0 0.1px #BDB098, 0.1px 0 #BDB098, 0 -0.1px #BDB098;
 }
 
 .addToFavourite{}
@@ -699,6 +703,42 @@ p.offerCategory{
 /*
    to jest klasa i id buttona add to favourite
  */
-.favourite{}
+.favourite{
+  box-sizing: border-box;
+  position: relative;
+  margin-top: 15px;
+  width: 100%;
+  border: none;
+  line-height: 34px;
+  white-space: nowrap;
+  border-radius: 0.2em;
+  height: 45px !important;
+  color: #142e3f !important;
+  text-align: center !important;
+  font-size: 20px !important;
+  background-color: #ff85a0 !important;
+  font-family: 'ABeeZee', Arial, Helvetica, sans-serif;
+  text-shadow: 0 -1px 0 #e7b6d4;
+  background: url('../img/serce.png') 0px 0px no-repeat;
+}
+
+.dislike{
+  box-sizing: border-box;
+  position: relative;
+  margin-top: 15px;
+  width: 100%;
+  border: none;
+  line-height: 34px;
+  white-space: nowrap;
+  border-radius: 0.2em;
+  height: 45px !important;
+  color: #142e3f !important;
+  text-align: center !important;
+  font-size: 20px !important;
+  background-color: #af82f7 !important;
+  font-family: 'ABeeZee', Arial, Helvetica, sans-serif;
+  text-shadow: 0 -1px 0 #c1a3f0;
+  background: url('../img/kosz.png') 0px 0px no-repeat;
+}
 
 #favouriteBtn{}
