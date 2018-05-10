@@ -1,6 +1,6 @@
 var userSex = 'empty';
 var preferencesValue = 'empty';
-var favouritesValue = 'empty';
+var favouritesValue = [];
 var userID = 'empty';
 
 (function() {
@@ -30,12 +30,32 @@ function getFavourites() {
     console.log(favouritesValue);
     return favouritesValue;
 }
-function setFavourites(newFavourite) {
-    if (favouritesValue){
-        if (favouritesValue != 'empty') {
-            favouritesValue.push(newFavourite);
+
+function addToFav() {
+    var url = localStorage.url;
+    var newFav = [];
+    var isInFav = false;
+
+    if (favouritesValue == 'empty') {
+        newFav[0] = url;
+        favouritesValue = newFav;
+    } else if (!favouritesValue) {
+        newFav[0] = url;
+        favouritesValue = newFav;
+	} else {
+    	var i =0;
+        for (i; i<favouritesValue.length; i++){
+        	console.log(favouritesValue[i]);
+        	if(favouritesValue[i] == url) { isInFav = true; alert("Oferta już dodana!")}
         }
-    } else {favouritesValue = newFavourite}
+        if(!isInFav){
+            favouritesValue.push(url);
+		}
+	}
+	console.log(favouritesValue);
+    var updates = {};
+    updates['/users/' + userID + '/favourites'] = favouritesValue;
+    firebase.database().ref().update(updates);
 }
 	
 	$(document).ready(function(){
@@ -51,8 +71,8 @@ function setFavourites(newFavourite) {
         const selectSex = document.getElementById('gender');
 		var firstLogin = false;
 		var userName = 'empty';
-		var userFavourites = 'empty';
 		var userInfo = 'empty';
+		var userFavourites = 'empty';
 		var isPreferencesSet = false;
 		var isGenderSet = false;
 		const btnSubmit = document.getElementById('submit');
@@ -75,9 +95,8 @@ function setFavourites(newFavourite) {
             firstLogin = false;
             userID = 'empty';
             userName = 'empty';
-            userFavourites = 'empty'
             userInfo = 'empty';
-            userSex = 'empty'
+            userSex = 'empty';
             preferencesValue = 'empty';
             favouritesValue = 'empty';
             isPreferencesSet = false;
@@ -192,17 +211,6 @@ function setFavourites(newFavourite) {
             alert('Wybierz płeć!')
         }
 	});
-
-        $('#favouriteBtn').click(function() {
-            var url = localStorage.url;
-            if (userFavourites == 'empty') {
-                userFavourites = url;
-            } else {
-                userFavourites += url;
-            }
-            var updates = {};
-            updates['/users/' + userID + '/favourites'] = userFavourites;
-        });
 
         /*btnRemFav.addEventListener('click', function() {
             var url = localStorage.url;

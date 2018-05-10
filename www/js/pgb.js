@@ -208,7 +208,7 @@ function showOffer() {
     html += '<div class="offerDescription">' + offerDetails["description"] + '</div>';
     html += '<div class="offerPricebox"><div class="oldPrice"><s>' + oldPrice.replace(",",".") + '</s>';
     html += '</div><div class="price">' + price.replace(",",".") + '</div></div>';
-    html += '<div class="addToFavourite"><button class="favourite" id="favouriteBtn" data-role="none">Dodaj do ulubionych <3</button></div>'
+    html += '<div class="addToFavourite"><button class="favourite" onclick="addToFav()" data-role="none">Dodaj do ulubionych <3</button></div>'
     html += '</div>';
 
     //set html to element
