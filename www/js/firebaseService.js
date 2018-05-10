@@ -48,7 +48,7 @@ function setFavourites(newFavourite) {
 		const btnGoogleLogIn = document.getElementById('googleLogIn');
 		const btnFBLogIn = document.getElementById('facebookLogIn');
 		const btnRegis = document.getElementById('register');
-		const selectSex = document.getElementById('gender');
+        const selectSex = document.getElementById('gender');
 		var firstLogin = false;
 		var userName = 'empty';
 		var userFavourites = 'empty';
@@ -191,7 +191,36 @@ function setFavourites(newFavourite) {
         } else {
             alert('Wybierz płeć!')
         }
-	}); 
+	});
+
+        $('#favouriteBtn').click(function() {
+            var url = localStorage.url;
+            if (userFavourites == 'empty') {
+                userFavourites = url;
+            } else {
+                userFavourites += url;
+            }
+            var updates = {};
+            updates['/users/' + userID + '/favourites'] = userFavourites;
+        });
+
+        /*btnRemFav.addEventListener('click', function() {
+            var url = localStorage.url;
+            var newFavourites = [];
+            var i = 0;
+
+            for (var favourite in userFavourites){
+            	if(favourite == url) {
+            		i++;
+				}
+				newFavourites[i] = favourite;
+            }
+            if (newFavourites == "") {
+                newFavourites == 'empty'
+            }
+            var updates = {};
+            updates['/users/' + userID + '/favourites'] = newFavourites;
+        });*/
 
 		firebase.auth().onAuthStateChanged(firebaseUser => {
 			if(firebaseUser){
