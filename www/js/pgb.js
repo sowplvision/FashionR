@@ -36,7 +36,7 @@ function listCategories() {
 
     //list categories names into html checkboxes
     for (var category in categories){
-        html += "<div class='check'><input type='checkbox' id='"+ category +"'/><label for='"+ category +"'><div class='box'><i class='fa fa-check'></i></div>&nbsp;" + category + "</label></div>";
+        html += "<div class='check'><input type='checkbox' class='categoryCheckbox' id='"+ category +"'/><label for='"+ category +"'><div class='box'><i class='fa fa-check'></i></div>&nbsp;" + category + "</label></div>";
     }
 
     //set html code to element
