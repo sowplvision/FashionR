@@ -420,11 +420,81 @@ function getHouseSingleOffer(url) {
         dataType:"html",
         async:false,
         success:function (data) {
+            var i,temp;
             var parser = new DOMParser();
             var doc = parser.parseFromString(data, "text/html");
 
             //offer URL
             var offerUrl = '"url":"' + url + '"';
+            //console.log(offerUrl);
+
+            //offer sku
+            temp = doc.querySelector("div[class='title'] div[class='index']");
+
+            var sku = '"sku":"' + temp.innerText + '"';
+            //console.log(sku);
+
+            //product name
+            temp = doc.querySelector("div[class='title'] h1");
+
+            var name = '"name":"' + temp.innerText + '"';
+            //console.log(name);
+
+            //product price, discount(special price)
+            var price, specialPrice, originalPrice;
+            temp = doc.querySelector("div[class='price'] del span[class='value']");
+            if (temp != null){
+                temp = temp.innerText.replace("PLN","").replace(/\s+/g, '');
+
+                price = '"price":"' + temp +  '"';
+
+                temp = doc.querySelector("div[class='price'] span[class='new_price'] span[class='value']");
+                temp = temp.innerText.replace("PLN","").replace(/\s+/g, '');
+
+                specialPrice = '"special_price":"' + temp +  '"';
+                originalPrice = '"original_price":"' + temp +  '"';
+            }
+            else {
+                specialPrice = '"special_price":"null"';
+
+                temp = doc.querySelector("div[class='price'] span[class='regular_price'] span[class='value']");
+                temp = temp.innerText.replace("PLN","").replace(/\s+/g, '');
+
+                price = '"price":"' + temp +  '"';
+                originalPrice = '"original_price":"' + temp +  '"';
+            }
+            //console.log(price);
+            //console.log(specialPrice);
+            //console.log(originalPrice);
+
+            //images of offer
+            temp = doc.querySelectorAll("div[class='gallery'] div img");
+
+            var img = '"images":[';
+            for (i = 0; i < temp.length; i++){
+                img += '"' + temp[i].getAttribute("src") + '"';
+                if (i < temp.length-1){
+                    img += ",";
+                }
+            }
+            img += "]";
+            //console.log(img);
+
+            //additional product description
+            temp = doc.querySelector("div[class='summary']");
+            temp = temp.innerText.trim().replace(/\r?\n/g, "</br>");
+            var description = '"description":"' + temp + '"';
+            //console.log(description);
+
+            var str = "{";
+            str += sku + "," + name + "," + offerUrl + ",";
+            str += price + "," + specialPrice + "," + originalPrice + ",";
+            str += img + "," + description;
+            str +="}";
+
+            //console.log(str);
+            json = JSON.parse(str);
+            console.log(json);
         },
         error:function (data) {
 
