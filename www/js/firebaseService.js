@@ -1,3 +1,7 @@
+var userSex = 'empty';
+var preferencesValue = 'empty';
+var favouritesValue = 'empty';
+
 (function() {
 	const config = {
     		apiKey: "AIzaSyCZy2Z-MotDZQbzo6ZF0M15xKX6TiQXL8U",
@@ -9,6 +13,38 @@
   		};
 	  firebase.initializeApp(config);
 	}());
+
+function getPreferences() {
+    firebase.database().ref('users/' + userID +'/preferences').once('value').then(function(snapshot) {
+        preferencesValue = snapshot.val();
+        console.log("Preferences check getPref: ");
+        console.log(preferencesValue);
+    });
+    return preferencesValue;
+}
+function getGender() {
+    firebase.database().ref('users/' + userID +'/gender').once('value').then(function(snapshot) {
+        userSex = snapshot.val();
+        console.log("Preferences check getGender: ");
+        console.log(userSex);
+    });
+    return userSex;
+}
+function getFavourites() {
+    firebase.database().ref('users/' + userID +'/favourites').once('value').then(function(snapshot) {
+        favouritesValue = snapshot.val();
+        console.log("Preferences check getFav: ");
+        console.log(favouritesValue);
+    });
+    return favouritesValue;
+}
+function setFavourites(newFavourite) {
+    if (favouritesValue){
+        if (favouritesValue != 'empty') {
+            favouritesValue.push(newFavourite);
+        }
+    } else {favouritesValue = newFavourite}
+}
 	
 	$(document).ready(function(){
 		const emailInput = document.getElementById('emailLog');
@@ -25,48 +61,12 @@
 		var userObject;
 		var userID = 'empty';
 		var userName = 'empty';
-		var userFavourites = 'empty'
+		var userFavourites = 'empty';
 		var userInfo = 'empty';
-		var userSex = 'empty'
-        var preferencesValue = 'empty';
-        var favouritesValue = 'empty';
 		var isPreferencesSet = false;
 		var isGenderSet = false;
 		const btnSubmit = document.getElementById('submit');
 
-        function getPreferences() {
-            firebase.database().ref('users/' + userID +'/preferences').once('value').then(function(snapshot) {
-                preferencesValue = snapshot.val();
-                console.log("Preferences check getPref: ");
-                console.log(preferencesValue);
-            });
-            return preferencesValue;
-        }
-        function getGender() {
-            firebase.database().ref('users/' + userID +'/gender').once('value').then(function(snapshot) {
-                userSex = snapshot.val();
-                console.log("Preferences check getGender: ");
-                console.log(userSex);
-            });
-            return userSex;
-        }
-        function getFavourites() {
-            firebase.database().ref('users/' + userID +'/favourites').once('value').then(function(snapshot) {
-                favouritesValue = snapshot.val();
-                console.log("Preferences check getFav: ");
-                console.log(favouritesValue);
-            });
-            return favouritesValue;
-        }
-        function setFavourites(newFavourite) {
-            if (favouritesValue){
-                if (favouritesValue != 'empty') {
-                    favouritesValue.push(newFavourite);
-                }
-            } else {favouritesValue = newFavourite}
-        }
-
-	  
 		btnLogIn.addEventListener('click', function() {
 			const email = emailInput.value;
 			const passwd = passInput.value;
