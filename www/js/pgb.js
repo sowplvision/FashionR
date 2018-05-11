@@ -24,13 +24,29 @@ function init() {
     //when page is loaded show favourites
     $(document).on("pagebeforeshow", "#favouritesPage", function () {
         $.when(updateFirebase()).done(function () {
-            showFavourites();
+            var favCheck = getFavourites();
+            var html = "<br><div><p class='offerName'>Brak ulubionych!</p></div>"
+            if (favCheck == 'empty') {
+                document.getElementById("favouritesOffers").innerHTML = html;
+            } else if (!favCheck) {
+                document.getElementById("favouritesOffers").innerHTML = html;
+            } else {
+                showFavourites();
+            }
         });
     });
     //when page is loaded show favourites
     $(document).on("pageshow", "#favouritesPage", function () {
         $.when(updateFirebase()).done(function () {
-            showFavourites();
+            var favCheck = getFavourites();
+            var html = "<br><div><p class='offerName'>Brak ulubionych!</p></div>"
+            if (favCheck == 'empty') {
+                document.getElementById("favouritesOffers").innerHTML = html;
+            } else if (!favCheck) {
+                document.getElementById("favouritesOffers").innerHTML = html;
+            } else {
+                showFavourites();
+            }
         });
     });
 
