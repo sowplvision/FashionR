@@ -428,7 +428,7 @@ function getHouseSingleOffer(url) {
             var parser = new DOMParser();
             var doc = parser.parseFromString(data, "text/html");
 
-            console.log(data);
+            //console.log(data);
 
             //offer URL
             var offerUrl = '"url":"' + url + '"';
@@ -528,7 +528,7 @@ function getCroppSingleOffer(url) {
             var parser = new DOMParser();
             var doc = parser.parseFromString(data, "text/html");
 
-            console.log(data);
+            //console.log(data);
 
             //offer URL
             var offerUrl = '"url":"' + url + '"';

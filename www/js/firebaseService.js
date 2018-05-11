@@ -16,18 +16,18 @@ var userID = 'empty';
 	}());
 
 function getPreferences() {
-    console.log("Preferences check getPref: ");
-    console.log(preferencesValue);
+    //console.log("Preferences check getPref: ");
+    //console.log(preferencesValue);
     return preferencesValue;
 }
 function getGender() {
-    console.log("Preferences check getGender: ");
-    console.log(userSex);
+    //console.log("Preferences check getGender: ");
+    //console.log(userSex);
     return userSex;
 }
 function getFavourites() {
-    console.log("Preferences check getFav: ");
-    console.log(favouritesValue);
+    //console.log("Preferences check getFav: ");
+    //console.log(favouritesValue);
     return favouritesValue;
 }
 
@@ -45,14 +45,14 @@ function addToFav() {
     } else {
         var i =0;
         for (i; i<favouritesValue.length; i++){
-            console.log(favouritesValue[i]);
+            //console.log(favouritesValue[i]);
             if(favouritesValue[i] == url) { isInFav = true;}
         }
         if(!isInFav){
             favouritesValue.push(url);
         }
     }
-    console.log(favouritesValue);
+    //console.log(favouritesValue);
     var updates = {};
     updates['/users/' + userID + '/favourites'] = favouritesValue;
     firebase.database().ref().update(updates);
@@ -70,12 +70,12 @@ function removeFromFav() {
     	newFav = 'empty';
 	} else {
         for (i; i<favouritesValue.length; i++){
-            console.log(favouritesValue[i]);
+            //console.log(favouritesValue[i]);
             if(favouritesValue[i] != url) { newFav.push(favouritesValue[i]);}
         }
 	}
-    console.log('zmieniono FAV:   ');
-    console.log(newFav);
+    //console.log('zmieniono FAV:   ');
+    //console.log(newFav);
     var updates = {};
     updates['/users/' + userID + '/favourites'] = newFav;
     firebase.database().ref().update(updates);
@@ -108,8 +108,8 @@ function removeFromFav() {
 			const passwd = passInput.value;
 			const auth = firebase.auth();
 			const connect = auth.signInWithEmailAndPassword(email, passwd);
-			console.log("LOGOWANIE");
-			console.log(connect);
+			//console.log("LOGOWANIE");
+			//console.log(connect);
 			connect.catch(function(error) {
 				var errorCode = error.code;
 				var errorMessage = error.message;
@@ -168,8 +168,8 @@ function removeFromFav() {
 			firebase.auth().signInWithRedirect(provider).then(function(result) {
 				var token = result.credential.accessToken; 
 				var user = result.user; 
-				console.log("TOKEN: "+token); 
-				console.log("USER"+user);
+				//console.log("TOKEN: "+token);
+				//console.log("USER"+user);
 			}).catch(function(error) {
 				var errorCode = error.code;
 				var errorMessage = error.message;
@@ -182,8 +182,8 @@ function removeFromFav() {
 			firebase.auth().signInWithRedirect(provider).then(function(result) {
 				var token = result.credential.accessToken; 
 				var user = result.user; 
-				console.log("TOKEN: "+token); 
-				console.log("USER"+user);
+				//console.log("TOKEN: "+token);
+				//console.log("USER"+user);
 			}).catch(function(error) {
 				var errorCode = error.code;
 				var errorMessage = error.message;
@@ -209,12 +209,12 @@ function removeFromFav() {
                 i++;
             });
             preferencesValue = pref;
-            console.log("Preferences value from pref: "+preferencesValue);
+            //console.log("Preferences value from pref: "+preferencesValue);
             if(!isPreferencesSet) {
                 if(preferencesValue=="") {
                     alert('Wybierz preferencje!')
                 } else {
-                    console.log("Preferences adding user");
+                    //console.log("Preferences adding user");
                     userInfo = {
                         name: userName,
                         favourites: userFavourites,
@@ -226,7 +226,7 @@ function removeFromFav() {
                     $.mobile.changePage('#loggedInPage');
                 }
             } else {
-                console.log("Preferences updating");
+                //console.log("Preferences updating");
                 var updates = {};
                 updates['/users/' + userID + '/gender'] = userSex;
                 updates['/users/' + userID + '/preferences'] = preferencesValue;
@@ -238,23 +238,6 @@ function removeFromFav() {
         }
 	});
 
-        /*btnRemFav.addEventListener('click', function() {
-            var url = localStorage.url;
-            var newFavourites = [];
-            var i = 0;
-
-            for (var favourite in userFavourites){
-            	if(favourite == url) {
-            		i++;
-				}
-				newFavourites[i] = favourite;
-            }
-            if (newFavourites == "") {
-                newFavourites == 'empty'
-            }
-            var updates = {};
-            updates['/users/' + userID + '/favourites'] = newFavourites;
-        });*/
 
 		firebase.auth().onAuthStateChanged(firebaseUser => {
 			if(firebaseUser){
@@ -267,21 +250,21 @@ function removeFromFav() {
 				} else {
 					firebase.database().ref('users/' + userID +'/preferences').once('value').then(function(snapshot) {
 						preferencesValue = snapshot.val();
-                        console.log("Preferences check login: ");
-                        console.log(preferencesValue);
+                        //console.log("Preferences check login: ");
+                        //console.log(preferencesValue);
                         if(!preferencesValue) {
-                            console.log("Preferences null");
+                            //console.log("Preferences null");
                         	userName = firebaseUser.displayName;
                         	if(!userName) {userName = firebaseUser.email;}
                             $.mobile.changePage('#preferences');
 						}else if (preferencesValue == 'empty') {
-                            console.log("Preferences empty: "+preferencesValue);
+                            //console.log("Preferences empty: "+preferencesValue);
                             $.mobile.changePage('#preferences');
 
                         } else {
                         	isPreferencesSet = true;
                             $.mobile.changePage('#loggedInPage');
-                            console.log(firebaseUser.uid);
+                            //console.log(firebaseUser.uid);
                         }
 					});
 				}
