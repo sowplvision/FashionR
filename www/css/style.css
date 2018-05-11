@@ -353,11 +353,7 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: left;
-      -ms-flex-pack: left;
           justify-content: left;
-  -webkit-box-align: left;
-      -ms-flex-align: left;
           align-items: left;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
@@ -529,7 +525,8 @@ body {
     margin-top: 0%;
     margin-bottom: 0%;
     padding-top: 0%;
-    padding-bottom: 0%;
+    padding-bottom: 8px;
+    padding-right: 30px;
     text-align: center;
     font: 7vh 'Dancing Script', Arial, Helvetica, sans-serif;
     font-weight: 700;

@@ -37,6 +37,24 @@ function init() {
     $(document).on("pagebeforeshow", "#filtersPage", function () {
         createFilters();
     });
+    $(document).on("pagehide", "#loggedInPage", function () {
+        closeNav(1);
+    });
+    $(document).on("pagehide", "#favouritesPage", function () {
+        closeNav(2);
+    });
+    $(document).on("pagehide", "#filtersPage", function () {
+        closeNav(3);
+    });
+    $(document).on("pagehide", "#preferences", function () {
+        closeNav(4);
+    });
+    $(document).on("pagehide", "#authorsPage", function () {
+        closeNav(5);
+    });
+    $(document).on("pagehide", "#offerPage", function () {
+        closeNav(6);
+    });
 }
 
 function listCategories() {
