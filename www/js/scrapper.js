@@ -428,6 +428,8 @@ function getHouseSingleOffer(url) {
             var parser = new DOMParser();
             var doc = parser.parseFromString(data, "text/html");
 
+            console.log(data);
+
             //offer URL
             var offerUrl = '"url":"' + url + '"';
             //console.log(offerUrl);
@@ -486,7 +488,12 @@ function getHouseSingleOffer(url) {
 
             //additional product description
             temp = doc.querySelector("div[class='summary']");
-            temp = temp.innerText.trim().replace(/\r?\n/g, "</br>");
+            if(temp != null) {
+                temp = temp.innerText.trim().replace(/\r?\n/g, "</br>");
+            }
+            else{
+                temp = "";
+            }
             var description = '"description":"' + temp + '"';
             //console.log(description);
 
@@ -520,6 +527,8 @@ function getCroppSingleOffer(url) {
             var i, temp;
             var parser = new DOMParser();
             var doc = parser.parseFromString(data, "text/html");
+
+            console.log(data);
 
             //offer URL
             var offerUrl = '"url":"' + url + '"';
@@ -579,7 +588,12 @@ function getCroppSingleOffer(url) {
 
             //additional product description
             temp = doc.querySelector("div[class='additional-description']");
-            temp = temp.innerText.trim().replace(/\r?\n/g, "</br>");
+            if(temp!=null) {
+                temp = temp.innerText.trim().replace(/\r?\n/g, "</br>");
+            }
+            else {
+                temp = "";
+            }
             var description = '"description":"' + temp + '"';
             //console.log(description);
 

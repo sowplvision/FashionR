@@ -12,7 +12,7 @@ function init() {
     });
     //remove bad feeling on loading offer - old offer was remain for 1s
     $(document).on("pagebeforeshow", "#offerPage", function () {
-        document.getElementById("favouritesOffers").innerHTML = "";
+        document.getElementById("offerDetails").innerHTML = "";
     });
 
     //when page is showed get load offer
@@ -24,15 +24,7 @@ function init() {
     //when page is loaded show favourites
     $(document).on("pagebeforeshow", "#favouritesPage", function () {
         $.when(updateFirebase()).done(function () {
-            var favCheck = getFavourites();
-            var html = "<br><div><p class='offerName'>Brak ulubionych!</p></div>"
-            if (favCheck == 'empty') {
-                document.getElementById("favouritesOffers").innerHTML = html;
-            } else if (!favCheck) {
-                document.getElementById("favouritesOffers").innerHTML = html;
-            } else {
-                showFavourites();
-            }
+            document.getElementById("favouritesOffers").innerHTML = "";
         });
     });
     //when page is loaded show favourites
@@ -50,7 +42,7 @@ function init() {
         });
     });
 
-    $(document).on("pagebeforeshow", "#filtersPage", function () {
+    $(document).on("pageinit", "#filtersPage", function () {
         createFilters();
     });
     $(document).on("pagehide", "#loggedInPage", function () {
@@ -70,6 +62,9 @@ function init() {
     });
     $(document).on("pagehide", "#offerPage", function () {
         closeNav(6);
+    });
+    $(document).on("pagehide", "#filteredListPage", function () {
+        closeNav(7);
     });
 }
 
@@ -205,6 +200,10 @@ function listOffers() {
     //creating of objects is done
     console.log("DONE");
 
+    if (html === ""){
+        html = "<br><div><p class='offerName'>Ups! Coś poszło nie tak :(</p></div>"
+    }
+
     //set result html code to element
     document.getElementById("offersContainer").innerHTML = html;
 }
@@ -276,6 +275,7 @@ function showOffer() {
     html += '<div class="offerPricebox"><div class="oldPrice"><s>' + oldPrice.replace(",",".") + '</s>';
     html += '</div><div class="price">' + price.replace(",",".") + '</div></div>';
     html += favBtn;
+    html += '<a href="' + url + '" data-role="button" class="ui-btn loginBtn preferencesBtn shopBtn">Przejdź do sklepu</a>';
     html += '</div>';
 
     //set html to element
@@ -351,15 +351,6 @@ function showFavourites() {
     document.getElementById("favouritesOffers").innerHTML = html;
 }
 
-function refreshPage() {
-    //refresh page if somethings goes wrong
-    $.mobile.changePage(window.location.href, {
-        allowSamePageTransition: true,
-        transition: 'none',
-        reloadPage: true
-    });
-}
-
 function createFilters(){
     var categories;
     var html = "";
@@ -388,18 +379,144 @@ function createFilters(){
     }
     //set html to element
     document.getElementById("filterCategory").innerHTML = html;
+    $('#filterCategory').selectmenu("refresh",true);
 
     html = "";
     var colors = getColors();
 
     html += "<option value='0'>Wybierz kolor:</option>";
+
     for (i = 0; i < colors.length; i++){
         html += "<option value='" + (i+1) +"'>" + colors[i] + "</option>";
     }
     //set html to element
     document.getElementById("filterColor").innerHTML = html;
+    $('#filterColor').selectmenu("refresh",true);
 }
 
 function listFilteredOffers(){
+    var i, e;
+    //Get choosen fields by user
+    e = document.getElementById("filterGender");
+    var gender = e.options[e.selectedIndex].text;
+    e = document.getElementById("filterCategory");
+    var cat = e.options[e.selectedIndex].text;
+    e = document.getElementById("filterColor");
+    var color = e.options[e.selectedIndex].text;
 
+    console.log(gender);
+    console.log(cat);
+    console.log(color);
+
+    if(gender == 'Wybierz płeć:' || cat == 'Wybierz kategorie:' || color == 'Wybierz kolor:'){
+        alert("Nie wypełniono pól wymaganych");
+        return null;
+    }
+
+    $.mobile.changePage("#filteredListPage");
+
+    var categories;
+    var html = "";
+
+    //react for option
+    if (gender==='Kobieta'){
+        categories = getCategories('woman');
+    }
+    else if(gender==='Mężczyzna'){
+        categories = getCategories('man');
+    }
+    else {
+        categories = "";
+    }
+
+    //showing offers for category
+        for (var category in categories) {
+            if (category.includes(cat)) {
+                console.log(cat);
+                //Creating html code for single house offer
+                for (i = 0; i < categories[category]["House"].length; i++) {
+                    var url = categories[category]["House"][i];
+                    //console.log(url);
+
+                    var offers = getHouseOffers(url);
+                    console.log(Object.keys(offers).length);
+                    console.log(offers);
+
+                    //create html for each single offer
+                    for (var offer in offers) {
+                        if(offers[offer]["color_name"]===color) {
+
+                            var img = offers[offer]["image_front"];
+                            var oldPrice = offers[offer]["special_price"];
+
+                            if (oldPrice != null) {
+                                oldPrice = offers[offer]["price"];
+                            }
+                            else {
+                                oldPrice = "";
+                            }
+                            var price = offers[offer]["original_price"];
+
+                            var url = offers[offer]["url"];
+
+                            html += "<div class='offer' onclick='show(\"" + url + "\")'>";
+                            html += "<div class='offerImg'><img class='houseImg' src=\"" + img + "\"/></div>";
+                            html += "<div class='offerFooter'>";
+                            html += "<img src='img/house.png'/>";
+                            html += "<p class='offerCategory'>" + offers[offer]["name"] + "</p>";
+                            html += "<p><s>" + oldPrice.replace(",", ".") + "</s>" + price.replace(",", ".") + "</p>";
+                            html += "</div>";
+                            html += "</div>";
+                        }
+                    }
+                }
+
+                //Creating html code for single cropp offer
+                for (i = 0; i < categories[category]["Cropp"].length; i++) {
+                    var url = categories[category]["Cropp"][i];
+                    //console.log(url);
+
+                    var offers = getCroppOffers(url);
+                    console.log(Object.keys(offers).length);
+                    console.log(offers);
+
+                    //create html for each single offer
+                    for (var offer in offers) {
+                        if(offers[offer]["color_name"]===color) {
+
+                            var img = offers[offer]["image_front"];
+                            var oldPrice = offers[offer]["special_price"];
+
+                            if (oldPrice != null) {
+                                oldPrice = offers[offer]["price"];
+                            }
+                            else {
+                                oldPrice = "";
+                            }
+                            var price = offers[offer]["original_price"];
+
+                            var url = offers[offer]["url"];
+
+                            //HTML which is added to site
+                            html += "<div class='offer' onclick='show(\"" + url + "\")'>";
+                            html += "<div class='offerImg'><img class='croppImg' src=\"" + img + "\"/></div>";
+                            html += "<div class='offerFooter'>";
+                            html += "<img src='img/cropp.png'/>";
+                            html += "<p class='offerCategory'>" + offers[offer]["name"] + "</p>";
+                            html += "<p><s>" + oldPrice.replace(",", ".") + "</s>" + price + "</p>";
+                            html += "</div>";
+                            html += "</div>";
+                        }
+                    }
+                }
+            }
+        }
+    //creating of objects is done
+    console.log("DONE");
+
+    if (html === ""){
+        html = "<br><div><p class='offerName'>Ups! Nie ma takich ofert :(</p></div>"
+    }
+    //set result html code to element
+    document.getElementById("filteredContainer").innerHTML = html;
 }

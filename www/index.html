@@ -177,6 +177,7 @@
                     <option value="0">Wybierz kolor:</option>
                 </select>
             </div>
+            <button id="search" data-role="none" class="loginBtn preferencesBtn" onclick="listFilteredOffers()">Wyszukaj</button>
         </div>
         </div>
     </div>
@@ -286,6 +287,37 @@
                     </div>
         </div>
         <div id="offerDetails"></div>
+    </div>
+</div>
+
+<!-- FILTERED LIST PAGE -->
+<div data-role="page" id="filteredListPage">
+    <div data-role="main" class="ui-content">
+        <div id="mySidenav7" class="sidenav">
+            <div class="container closebtn" onclick="closeNav(7)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+            <br><br>
+            <a href="#favouritesPage" class="favourites">Ulubione</a>
+            <a href="#loggedInPage" class="searchOffers">Przeglądaj oferty</a>
+            <a href="#filtersPage" class="filters">Wybierz oferty</a>
+            <a href="#preferences" class="preferences">Preferencje</a>
+            <a href="#authorsPage">Autorzy</a>
+            <a href="#" class="logout">Wyloguj</a>
+        </div>
+        <div class="topBar">
+            <div class="container pageNav" onclick="openNav(7)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+            <div class="pageTitle">
+                <h1>FashionR</h1>
+            </div>
+        </div>
+        <div id="filteredContainer"></div>
     </div>
 </div>
 </body>
