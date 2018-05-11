@@ -2,9 +2,17 @@
 function openNav(x) {
     document.getElementById("mySidenav" + x).style.width = "100%";
     //x.classList.toggle("change");
+    $('html, body').css({
+        overflow: 'hidden',
+        height: '100%'
+    });
 }
 
 /* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
 function closeNav(x) {
     document.getElementById("mySidenav" + x).style.width = "0";
+    $('html, body').css({
+        overflow: 'auto',
+        height: 'auto'
+    });
 }
