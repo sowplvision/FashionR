@@ -468,8 +468,8 @@ body {
     border: 1.5px solid rgb(37, 37, 37);
     border-radius: 15px;
     box-shadow: 5px 10px 8px #888888;
-    width: 200px !important;
-    height: 380px;
+    width: 42vw;
+    height: auto;
     position: relative;
     cursor: pointer;
     z-index: 1 !important;
@@ -483,21 +483,21 @@ body {
 }
 
 .offerFooter p{
-    margin-top: 15px;
-    margin-right: 5px;
+    margin-top: 2vw;
+    margin-right: 0.6vw;
     text-align: right;
-    font: 30px 'Dancing Script', Arial, Helvetica, sans-serif;
+    font: 3vh 'Dancing Script', Arial, Helvetica, sans-serif;
     font-weight: 600;
     color: #020c13;
     text-shadow: -0.4px 0 #BDB098, 0 0.4px #BDB098, 0.4px 0 #BDB098, 0 -0.4px #BDB098;
 }
 
 .offerFooter p s{
-    font-size: 20px;
+    font-size: 2.5vh;
     color: darkred;
     position: absolute;
-    right: 5px;
-    bottom: 30px;
+    right: 0.4vw;
+    bottom: 3vh;
 }
 
 .offerFooter img{
@@ -685,12 +685,12 @@ body {
 }
 
 p.offerCategory{
-    margin-top: 1px;
-    margin-bottom: 1px;
-    height: 45px;
+    margin-top: 0.5vh;
+    margin-bottom: 0.5vh;
+    height: 6vw;
     color: #142e3f !important;
     text-align: center;
-    font: 16px 'ABeeZee', Arial, Helvetica, sans-serif;
+    font: 2.2vh 'ABeeZee', Arial, Helvetica, sans-serif;
     font-weight: bold;
     text-shadow: -0.1px 0 #BDB098, 0 0.1px #BDB098, 0.1px 0 #BDB098, 0 -0.1px #BDB098;
 }
@@ -743,25 +743,6 @@ p.offerCategory{
     margin-top: 9vh;
 }
 
-.houseImg{
-  height: 280px !important;
-  background-size: cover !important;
-  background-color: #ffffff;
-}
+.houseImg{}
 
-.croppImg{
-  height: 280px !important;
-  background-size: cover !important;
-  background-color: #ffffff;
-}
-
-.preferencesBtn{
-  height: 45px !important;
-  margin-bottom: 25px !important;
-  padding: 0px 0px 0px 0px !important;
-  color: #ffffff !important;
-  text-align: center !important;
-  font-size: 20px !important;
-  background-image: linear-gradient(#536D7E, #788C99);
-  text-shadow: -0.5px 0 #233F51, 0 0.5px #142e3f, 1px 0 #233F51, 0 -0.5px #142e3f;
-}
+.croppImg{}

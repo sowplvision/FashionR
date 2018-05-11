@@ -9,7 +9,13 @@
     <author>
 		Daniel Kucharczyk, Wojciech Wisla, Anna Zukowska
 	</author>
-	<platform name="android" />
+    <platform name="android">
+        <icon density="mdpi" src="img/mdpi.png" />
+        <icon density="hdpi" src="img/hdpi.png" />
+        <icon density="xhdpi" src="img/xhdpi.png" />
+        <icon density="xhdpi" src="img/xxhdpi.png" />
+        <icon density="xhdpi" src="img/xxxhdpi.png" />
+    </platform>
 	<preference name="AndroidLaunchMode" value="singleTask" />
 	
 	<plugin name="cordova-plugin-device" spec="~1.1.4" />
